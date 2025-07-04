@@ -15,6 +15,11 @@ type MLDSAKeyPair struct {
 
 // GenerateMLDSAKeyPair generates a new ML-DSA key pair using CIRCL ML-DSA-87.
 func GenerateMLDSAKeyPair() (*MLDSAKeyPair, error) {
+	   defer func() {
+			   if r := recover(); r != nil {
+					   fmt.Printf("panic in GenerateMLDSAKeyPair: %v\n", r)
+			   }
+	   }()
 	pk, sk, err := mldsa87.GenerateKey(nil)
 	if err != nil {
 		return nil, fmt.Errorf("mldsa87.GenerateKey: %w", err)
@@ -35,6 +40,11 @@ func GenerateMLDSAKeyPair() (*MLDSAKeyPair, error) {
 
 // MLDSASign signs a message using the ML-DSA private key (CIRCL ML-DSA-87).
 func MLDSASign(privateKey []byte, message []byte) ([]byte, error) {
+	   defer func() {
+			   if r := recover(); r != nil {
+					   fmt.Printf("panic in MLDSASign: %v\n", r)
+			   }
+	   }()
 	var sk mldsa87.PrivateKey
 	if err := sk.UnmarshalBinary(privateKey); err != nil {
 		return nil, err
@@ -48,6 +58,11 @@ func MLDSASign(privateKey []byte, message []byte) ([]byte, error) {
 
 // MLDSAVerify verifies an ML-DSA signature using CIRCL ML-DSA-87.
 func MLDSAVerify(publicKey []byte, message []byte, signature []byte) bool {
+	   defer func() {
+			   if r := recover(); r != nil {
+					   fmt.Printf("panic in MLDSAVerify: %v\n", r)
+			   }
+	   }()
 	var pk mldsa87.PublicKey
 	if err := pk.UnmarshalBinary(publicKey); err != nil {
 		return false
