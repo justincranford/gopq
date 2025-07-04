@@ -14,6 +14,16 @@ type MLKEMKeyPair struct {
 	PrivateKey kem.PrivateKey
 }
 
+// GenerateDeterministicMLKEMKeyPair generates a Kyber1024 KEM key pair from a seed (for KATs).
+// The seed must be of length kyber1024.Scheme().SeedSize().
+func GenerateDeterministicMLKEMKeyPair(seed []byte) (*MLKEMKeyPair, error) {
+	if len(seed) != kyber1024.Scheme().SeedSize() {
+		return nil, errors.New("invalid seed size")
+	}
+	pbk, pvk := kyber1024.Scheme().DeriveKeyPair(seed)
+	return &MLKEMKeyPair{PublicKey: pbk, PrivateKey: pvk}, nil
+}
+
 // GenerateMLKEMKeyPair generates a new Kyber1024 KEM key pair.
 func GenerateMLKEMKeyPair() (*MLKEMKeyPair, error) {
 	pk, sk, err := kyber1024.Scheme().GenerateKeyPair()
@@ -59,4 +69,40 @@ func MLKEMDecapsulate(privateKey kem.PrivateKey, ciphertext []byte) ([]byte, err
 	}
 	ss, err := kyber1024.Scheme().Decapsulate(privateKey, ciphertext)
 	return ss, err
+}
+
+// MLKEMEncapsulateDeterministic encapsulates a shared secret using the Kyber1024 public key and a seed (for KATs).
+// The seed must be of length kyber1024.Scheme().EncapsulationSeedSize().
+func MLKEMEncapsulateDeterministic(publicKey kem.PublicKey, seed []byte) (sharedSecret []byte, ciphertext []byte, err error) {
+	if publicKey == nil {
+		return nil, nil, errors.New("invalid public key")
+	}
+	if len(seed) != kyber1024.Scheme().EncapsulationSeedSize() {
+		return nil, nil, errors.New("invalid encapsulation seed size")
+	}
+	ct, ss, err := kyber1024.Scheme().EncapsulateDeterministically(publicKey, seed)
+	return ss, ct, err
+}
+
+// generateDeterministicMLKEMKeyPair generates a Kyber1024 KEM key pair from a seed (for KATs).
+// The seed must be of length kyber1024.Scheme().SeedSize().
+func generateDeterministicMLKEMKeyPair(seed []byte) (*MLKEMKeyPair, error) {
+	if len(seed) != kyber1024.Scheme().SeedSize() {
+		return nil, errors.New("invalid seed size")
+	}
+	pbk, pvk := kyber1024.Scheme().DeriveKeyPair(seed)
+	return &MLKEMKeyPair{PublicKey: pbk, PrivateKey: pvk}, nil
+}
+
+// mlkemEncapsulateDeterministic encapsulates a shared secret using the Kyber1024 public key and a seed (for KATs).
+// The seed must be of length kyber1024.Scheme().EncapsulationSeedSize().
+func mlkemEncapsulateDeterministic(publicKey kem.PublicKey, seed []byte) (sharedSecret []byte, ciphertext []byte, err error) {
+	if publicKey == nil {
+		return nil, nil, errors.New("invalid public key")
+	}
+	if len(seed) != kyber1024.Scheme().EncapsulationSeedSize() {
+		return nil, nil, errors.New("invalid encapsulation seed size")
+	}
+	ct, ss, err := kyber1024.Scheme().EncapsulateDeterministically(publicKey, seed)
+	return ss, ct, err
 }
