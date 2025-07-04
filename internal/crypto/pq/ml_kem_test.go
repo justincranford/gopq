@@ -137,9 +137,13 @@ func TestMLKEMDecapsulateWithTamperedCiphertext(t *testing.T) {
 func TestMLKEMDecapsulateWithWrongKey(t *testing.T) {
 	key1, _ := GenerateMLKEMKeyPair()
 	key2, _ := GenerateMLKEMKeyPair()
-	_, ct, _ := MLKEMEncapsulate(key1.PublicKey)
-	_, err := MLKEMDecapsulate(key2.PrivateKey, ct)
-	if err == nil {
-		t.Error("expected error for decapsulation with wrong private key")
+	shared, ct, _ := MLKEMEncapsulate(key1.PublicKey)
+	sharedWrong, err := MLKEMDecapsulate(key2.PrivateKey, ct)
+	if err != nil {
+		t.Logf("decapsulation failed for wrong private key (acceptable): %v", err)
+		return
+	}
+	if string(shared) == string(sharedWrong) {
+		t.Error("shared secret should differ when decapsulated with wrong private key")
 	}
 }
