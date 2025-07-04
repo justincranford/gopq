@@ -1,0 +1,64 @@
+name: Persona Prompt Responder
+
+description: >
+  Responds to slash commands like /productmanager, /seniorstaffdeveloper, etc., in issues and PR comments by posting the corresponding persona prompt from .github.
+
+on:
+  issue_comment:
+    types: [created]
+  pull_request_review_comment:
+    types: [created]
+
+jobs:
+  respond-to-persona-command:
+    runs-on: ubuntu-latest
+    if: |
+      github.event.comment.body != null &&
+      (startsWith(github.event.comment.body, '/productmanager') ||
+       startsWith(github.event.comment.body, '/seniorstaffdeveloper') ||
+       startsWith(github.event.comment.body, '/qaautomationdeveloper') ||
+       startsWith(github.event.comment.body, '/documentationdeveloper') ||
+       startsWith(github.event.comment.body, '/releasemanager') ||
+       startsWith(github.event.comment.body, '/marketingvp') ||
+       startsWith(github.event.comment.body, '/applicationsecurityanalyst'))
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Set persona and prompt file
+        id: persona
+        run: |
+          case "${{ github.event.comment.body }}" in
+            /productmanager*) persona=product-manager;;
+            /seniorstaffdeveloper*) persona=senior-staff-developer;;
+            /qaautomationdeveloper*) persona=qa-automation-developer;;
+            /documentationdeveloper*) persona=documentation-developer;;
+            /releasemanager*) persona=release-manager;;
+            /marketingvp*) persona=marketing-vp;;
+            /applicationsecurityanalyst*) persona=application-security-analyst;;
+            *) echo "Unknown persona"; exit 1;;
+          esac
+          echo "persona=$persona" >> $GITHUB_OUTPUT
+          echo "prompt_file=.github/prompts/prompt-$persona.md" >> $GITHUB_OUTPUT
+
+      - name: Read persona prompt
+        id: prompt
+        run: |
+          if [ ! -f "${{ steps.persona.outputs.prompt_file }}" ]; then
+            echo "Persona prompt file not found." > persona_prompt.txt
+          else
+            cat "${{ steps.persona.outputs.prompt_file }}" > persona_prompt.txt
+          fi
+          echo "PROMPT<<EOF" >> $GITHUB_ENV
+          cat persona_prompt.txt >> $GITHUB_ENV
+          echo "EOF" >> $GITHUB_ENV
+
+      - name: Respond with persona prompt
+        uses: peter-evans/create-or-update-comment@v4
+        with:
+          comment-id: ${{ github.event.comment.id }}
+          body: |
+            **Persona Prompt:**
+            
+            ${{ env.PROMPT }}
+          reactions: eyes

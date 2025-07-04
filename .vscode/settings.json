@@ -1,0 +1,4 @@
+{
+    // Enable prompt files for chat integrations
+    "chat.promptFiles": true
+}
