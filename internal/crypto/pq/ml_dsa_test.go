@@ -24,7 +24,11 @@ func TestMLDSASignAndVerify(t *testing.T) {
 	if err != nil {
 		t.Fatalf("signing failed: %v", err)
 	}
-	if !MLDSAVerify(key.PublicKey, msg, sig) {
+	isVerify, err := MLDSAVerify(key.PublicKey, msg, sig)
+	if err != nil {
+		t.Fatalf("verifying failed: %v", err)
+	}
+	if !isVerify {
 		t.Error("signature should verify")
 	}
 }
@@ -36,7 +40,11 @@ func FuzzMLDSASignAndVerify(f *testing.F) {
 		if err != nil {
 			t.Skip()
 		}
-		if !MLDSAVerify(key.PublicKey, msg, sig) {
+		isVerify, err := MLDSAVerify(key.PublicKey, msg, sig)
+		if err != nil {
+			t.Fatalf("verifying failed: %v", err)
+		}
+		if !isVerify {
 			t.Error("signature should verify for fuzzed input")
 		}
 	})
@@ -73,7 +81,11 @@ func TestMLDSAVerifyWithInvalidKey(t *testing.T) {
 	msg := []byte("msg")
 	sig, _ := MLDSASign(key.PrivateKey, msg)
 	invalidPub := []byte{}
-	if MLDSAVerify(invalidPub, msg, sig) {
+	isVerify, err := MLDSAVerify(invalidPub, msg, sig)
+	if err != nil {
+		t.Fatalf("verifying failed: %v", err)
+	}
+	if isVerify {
 		t.Error("verify should fail with invalid public key")
 	}
 }
@@ -82,13 +94,18 @@ func TestMLDSAVerifyWithTamperedSignature(t *testing.T) {
 	key, _ := GenerateMLDSAKeyPair()
 	msg := []byte("msg")
 	sig, _ := MLDSASign(key.PrivateKey, msg)
-	if !MLDSAVerify(key.PublicKey, msg, sig) {
+	isVerify, err := MLDSAVerify(key.PublicKey, msg, sig)
+	if err != nil {
+		t.Fatalf("verifying failed: %v", err)
+	}
+	if !isVerify {
 		t.Error("verify should succeed for original signature")
 	}
 	if len(sig) > 0 {
 		sig[0] ^= 0xFF // tamper signature
 	}
-	if MLDSAVerify(key.PublicKey, msg, sig) {
+	isVerify, err = MLDSAVerify(key.PublicKey, msg, sig)
+	if isVerify {
 		t.Error("verify should fail with tampered signature")
 	}
 }
