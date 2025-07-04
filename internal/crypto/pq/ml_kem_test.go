@@ -98,3 +98,40 @@ func BenchmarkMLKEMDecapsulate(b *testing.B) {
 		MLKEMDecapsulate(key.PrivateKey, ct)
 	}
 }
+
+func TestMLKEMEncapsulateWithInvalidKey(t *testing.T) {
+	_, _, err := MLKEMEncapsulate(nil)
+	if err == nil {
+		t.Error("expected error for nil public key")
+	}
+}
+
+func TestMLKEMDecapsulateWithInvalidKey(t *testing.T) {
+	_, ct, _ := MLKEMEncapsulate(nil)
+	_, err := MLKEMDecapsulate(nil, ct)
+	if err == nil {
+		t.Error("expected error for nil private key")
+	}
+}
+
+func TestMLKEMDecapsulateWithTamperedCiphertext(t *testing.T) {
+	key, _ := GenerateMLKEMKeyPair()
+	_, ct, _ := MLKEMEncapsulate(key.PublicKey)
+	if len(ct) > 0 {
+		ct[0] ^= 0xFF // tamper ciphertext
+	}
+	_, err := MLKEMDecapsulate(key.PrivateKey, ct)
+	if err == nil {
+		t.Error("expected error for tampered ciphertext")
+	}
+}
+
+func TestMLKEMDecapsulateWithWrongKey(t *testing.T) {
+	key1, _ := GenerateMLKEMKeyPair()
+	key2, _ := GenerateMLKEMKeyPair()
+	_, ct, _ := MLKEMEncapsulate(key1.PublicKey)
+	_, err := MLKEMDecapsulate(key2.PrivateKey, ct)
+	if err == nil {
+		t.Error("expected error for decapsulation with wrong private key")
+	}
+}

@@ -57,3 +57,32 @@ func BenchmarkMLDSAVerify(b *testing.B) {
 		MLDSAVerify(key.PublicKey, msg, sig)
 	}
 }
+
+func TestMLDSASignWithInvalidKey(t *testing.T) {
+	_, err := MLDSASign([]byte{}, []byte("msg"))
+	if err == nil {
+		t.Error("expected error for empty private key")
+	}
+}
+
+func TestMLDSAVerifyWithInvalidKey(t *testing.T) {
+	key, _ := GenerateMLDSAKeyPair()
+	msg := []byte("msg")
+	sig, _ := MLDSASign(key.PrivateKey, msg)
+	invalidPub := []byte{}
+	if MLDSAVerify(invalidPub, msg, sig) {
+		t.Error("verify should fail with invalid public key")
+	}
+}
+
+func TestMLDSAVerifyWithTamperedSignature(t *testing.T) {
+	key, _ := GenerateMLDSAKeyPair()
+	msg := []byte("msg")
+	sig, _ := MLDSASign(key.PrivateKey, msg)
+	if len(sig) > 0 {
+		sig[0] ^= 0xFF // tamper signature
+	}
+	if MLDSAVerify(key.PublicKey, msg, sig) {
+		t.Error("verify should fail with tampered signature")
+	}
+}
