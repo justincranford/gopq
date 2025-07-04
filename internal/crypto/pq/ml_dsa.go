@@ -2,6 +2,8 @@
 package pq
 
 import (
+	"fmt"
+
 	"github.com/cloudflare/circl/sign/mldsa/mldsa87"
 )
 
@@ -15,15 +17,15 @@ type MLDSAKeyPair struct {
 func GenerateMLDSAKeyPair() (*MLDSAKeyPair, error) {
 	pk, sk, err := mldsa87.GenerateKey(nil)
 	if err != nil {
-		return nil, err
+		return nil, fmt.Errorf("mldsa87.GenerateKey: %w", err)
 	}
 	pub, err := pk.MarshalBinary()
 	if err != nil {
-		return nil, err
+		return nil, fmt.Errorf("pk.MarshalBinary: %w", err)
 	}
 	priv, err := sk.MarshalBinary()
 	if err != nil {
-		return nil, err
+		return nil, fmt.Errorf("sk.MarshalBinary: %w", err)
 	}
 	return &MLDSAKeyPair{
 		PublicKey:  pub,

@@ -13,6 +13,7 @@ The project is implemented in Go, targeting version **1.24.4** and using the lat
 - End-user documentation
 
 ## Coding Standards
+- **Error Wrapping:** All returned errors must be wrapped using `fmt.Errorf` with the original error as `%w` for traceability.
 - **Go Version:** All code must use Go 1.24.4 features and APIs. Reference the [Go Language Specification](https://go.dev/ref/spec) and [Standard Library](https://pkg.go.dev/std) for up-to-date usage.
 - **Dependencies:** Always use the latest stable versions of all dependencies. Update dependencies regularly.
 - **Formatting:**
