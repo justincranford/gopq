@@ -16,9 +16,10 @@ type MLDSAKeyPair struct {
 
 // GenerateMLDSAKeyPair generates a new ML-DSA key pair using CIRCL ML-DSA-87.
 func GenerateMLDSAKeyPair() (*MLDSAKeyPair, error) {
+	var err error
 	defer func() {
 		if r := recover(); r != nil {
-			fmt.Printf("panic in GenerateMLDSAKeyPair: %v\n%s", r, debug.Stack())
+			err = fmt.Errorf("panic in GenerateMLDSAKeyPair: %v\n%s", r, debug.Stack())
 		}
 	}()
 	pk, sk, err := mldsa87.GenerateKey(nil)
@@ -41,9 +42,10 @@ func GenerateMLDSAKeyPair() (*MLDSAKeyPair, error) {
 
 // MLDSASign signs a message using the ML-DSA private key (CIRCL ML-DSA-87).
 func MLDSASign(privateKey []byte, message []byte) ([]byte, error) {
+	var err error
 	defer func() {
 		if r := recover(); r != nil {
-			fmt.Printf("panic in MLDSASign: %v\n%s", r, debug.Stack())
+			err = fmt.Errorf("panic in MLDSASign: %v\n%s", r, debug.Stack())
 		}
 	}()
 	var sk mldsa87.PrivateKey
