@@ -15,7 +15,10 @@ func TestGenerateMLDSAKeyPair(t *testing.T) {
 }
 
 func TestMLDSASignAndVerify(t *testing.T) {
-	key, _ := GenerateMLDSAKeyPair()
+	key, err := GenerateMLDSAKeyPair()
+	if err != nil {
+		t.Fatalf("failed to generate ML-DSA key pair: %v", err)
+	}
 	msg := []byte("test message")
 	sig, err := MLDSASign(key.PrivateKey, msg)
 	if err != nil {
@@ -79,6 +82,9 @@ func TestMLDSAVerifyWithTamperedSignature(t *testing.T) {
 	key, _ := GenerateMLDSAKeyPair()
 	msg := []byte("msg")
 	sig, _ := MLDSASign(key.PrivateKey, msg)
+	if !MLDSAVerify(key.PublicKey, msg, sig) {
+		t.Error("verify should succeed for original signature")
+	}
 	if len(sig) > 0 {
 		sig[0] ^= 0xFF // tamper signature
 	}

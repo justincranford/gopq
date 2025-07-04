@@ -2,8 +2,7 @@
 package pq
 
 import (
-	"crypto/rand"
-	"errors"
+	"github.com/cloudflare/circl/sign/mldsa/mldsa87"
 )
 
 // MLDSAKeyPair represents a key pair for ML-DSA.
@@ -12,50 +11,44 @@ type MLDSAKeyPair struct {
 	PrivateKey []byte
 }
 
-// GenerateMLDSAKeyPair generates a new ML-DSA key pair.
+// GenerateMLDSAKeyPair generates a new ML-DSA key pair using CIRCL ML-DSA-87.
 func GenerateMLDSAKeyPair() (*MLDSAKeyPair, error) {
-	// Placeholder: Replace with real ML-DSA key generation logic.
-	pub := make([]byte, 64)
-	priv := make([]byte, 128)
-	_, err := rand.Read(pub)
+	pk, sk, err := mldsa87.GenerateKey(nil)
 	if err != nil {
 		return nil, err
 	}
-	_, err = rand.Read(priv)
+	pub, err := pk.MarshalBinary()
 	if err != nil {
 		return nil, err
 	}
-	return &MLDSAKeyPair{PublicKey: pub, PrivateKey: priv}, nil
+	priv, err := sk.MarshalBinary()
+	if err != nil {
+		return nil, err
+	}
+	return &MLDSAKeyPair{
+		PublicKey:  pub,
+		PrivateKey: priv,
+	}, nil
 }
 
-// MLDSASign signs a message using the ML-DSA private key.
+// MLDSASign signs a message using the ML-DSA private key (CIRCL ML-DSA-87).
 func MLDSASign(privateKey []byte, message []byte) ([]byte, error) {
-	// Placeholder: Replace with real ML-DSA signing logic.
-	if len(privateKey) == 0 {
-		return nil, errors.New("invalid private key")
+	var sk mldsa87.PrivateKey
+	if err := sk.UnmarshalBinary(privateKey); err != nil {
+		return nil, err
 	}
-	sig := make([]byte, 64)
-	_, err := rand.Read(sig)
-	return sig, err
+	sig, err := sk.Sign(nil, message, nil)
+	if err != nil {
+		return nil, err
+	}
+	return sig, nil
 }
 
-// MLDSAVerify verifies an ML-DSA signature.
+// MLDSAVerify verifies an ML-DSA signature using CIRCL ML-DSA-87.
 func MLDSAVerify(publicKey []byte, message []byte, signature []byte) bool {
-	// Simulate real ML-DSA verification: fail if publicKey or signature is empty or wrong length
-	if len(publicKey) == 0 || len(signature) != 64 {
+	var pk mldsa87.PublicKey
+	if err := pk.UnmarshalBinary(publicKey); err != nil {
 		return false
 	}
-	// Simulate tamper detection: check that signature is not all 0xFF (tampered in test)
-	allFF := true
-	for _, b := range signature {
-		if b != 0xFF {
-			allFF = false
-			break
-		}
-	}
-	if allFF {
-		return false
-	}
-	// In a real implementation, verify signature cryptographically
-	return true
+	return mldsa87.Verify(&pk, message, nil, signature)
 }
