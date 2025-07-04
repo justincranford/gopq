@@ -68,7 +68,21 @@ func MLKEMDecapsulate(privateKey kem.PrivateKey, ciphertext []byte) ([]byte, err
 		return nil, errors.New("invalid input")
 	}
 	ss, err := kyber1024.Scheme().Decapsulate(privateKey, ciphertext)
-	return ss, err
+	if err != nil || ss == nil || len(ss) == 0 {
+		return nil, errors.New("decapsulation failed")
+	}
+	// Optionally, check for all-zero shared secret (could indicate failure)
+	allZero := true
+	for _, b := range ss {
+		if b != 0 {
+			allZero = false
+			break
+		}
+	}
+	if allZero {
+		return nil, errors.New("decapsulation failed: all-zero shared secret")
+	}
+	return ss, nil
 }
 
 // MLKEMEncapsulateDeterministic encapsulates a shared secret using the Kyber1024 public key and a seed (for KATs).

@@ -81,6 +81,9 @@ go test -v -bench=. ./internal/crypto/pq
 - Never log or expose private keys or shared secrets in production.
 - This library is for demonstration and educational use only.
 - For production, use vetted libraries and follow NIST/FIPS guidance.
+- **Limitations:**
+  - The ML-DSA implementation is a placeholder and does not provide real cryptographic signature verification. Negative tests for tampered signatures may not be fully enforced.
+  - The Kyber KEM decapsulation (via CIRCL) may not always return an error for tampered ciphertext or wrong private key, depending on the underlying library's behavior. Always validate shared secrets and handle errors securely in production.
 
 ## References
 
