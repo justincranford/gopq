@@ -2,10 +2,10 @@
 package pq
 
 import (
-	"errors"
-
-	"github.com/cloudflare/circl/kem"
-	"github.com/cloudflare/circl/kem/kyber/kyber1024"
+	   "errors"
+	   "runtime/debug"
+	   "github.com/cloudflare/circl/kem"
+	   "github.com/cloudflare/circl/kem/kyber/kyber1024"
 )
 
 // MLKEMKeyPair represents a key pair for Kyber1024 KEM.
@@ -17,11 +17,12 @@ type MLKEMKeyPair struct {
 // GenerateDeterministicMLKEMKeyPair generates a Kyber1024 KEM key pair from a seed (for KATs).
 // The seed must be of length kyber1024.Scheme().SeedSize().
 func GenerateDeterministicMLKEMKeyPair(seed []byte) (*MLKEMKeyPair, error) {
-	defer func() {
-		if r := recover(); r != nil {
-			println("panic in GenerateDeterministicMLKEMKeyPair:", r)
-		}
-	}()
+	   defer func() {
+			   if r := recover(); r != nil {
+					   println("panic in GenerateDeterministicMLKEMKeyPair:", r)
+					   debug.PrintStack()
+			   }
+	   }()
 	if len(seed) != kyber1024.Scheme().SeedSize() {
 		return nil, errors.New("invalid seed size")
 	}
@@ -31,11 +32,12 @@ func GenerateDeterministicMLKEMKeyPair(seed []byte) (*MLKEMKeyPair, error) {
 
 // GenerateMLKEMKeyPair generates a new Kyber1024 KEM key pair.
 func GenerateMLKEMKeyPair() (*MLKEMKeyPair, error) {
-	defer func() {
-		if r := recover(); r != nil {
-			println("panic in GenerateMLKEMKeyPair:", r)
-		}
-	}()
+	   defer func() {
+			   if r := recover(); r != nil {
+					   println("panic in GenerateMLKEMKeyPair:", r)
+					   debug.PrintStack()
+			   }
+	   }()
 	pk, sk, err := kyber1024.Scheme().GenerateKeyPair()
 	if err != nil {
 		return nil, err
@@ -45,51 +47,56 @@ func GenerateMLKEMKeyPair() (*MLKEMKeyPair, error) {
 
 // MarshalPublicKey serializes a Kyber1024 public key to bytes.
 func MarshalPublicKey(pk kem.PublicKey) ([]byte, error) {
-	defer func() {
-		if r := recover(); r != nil {
-			println("panic in MarshalPublicKey:", r)
-		}
-	}()
+	   defer func() {
+			   if r := recover(); r != nil {
+					   println("panic in MarshalPublicKey:", r)
+					   debug.PrintStack()
+			   }
+	   }()
 	return pk.MarshalBinary()
 }
 
 // UnmarshalPublicKey deserializes bytes into a Kyber1024 public key.
 func UnmarshalPublicKey(data []byte) (kem.PublicKey, error) {
-	defer func() {
-		if r := recover(); r != nil {
-			println("panic in UnmarshalPublicKey:", r)
-		}
-	}()
+	   defer func() {
+			   if r := recover(); r != nil {
+					   println("panic in UnmarshalPublicKey:", r)
+					   debug.PrintStack()
+			   }
+	   }()
 	return kyber1024.Scheme().UnmarshalBinaryPublicKey(data)
 }
 
 // MarshalPrivateKey serializes a Kyber1024 private key to bytes.
 func MarshalPrivateKey(sk kem.PrivateKey) ([]byte, error) {
-	defer func() {
-		if r := recover(); r != nil {
-			println("panic in MarshalPrivateKey:", r)
-		}
-	}()
+	   defer func() {
+			   if r := recover(); r != nil {
+					   println("panic in MarshalPrivateKey:", r)
+					   debug.PrintStack()
+			   }
+	   }()
 	return sk.MarshalBinary()
 }
 
 // UnmarshalPrivateKey deserializes bytes into a Kyber1024 private key.
 func UnmarshalPrivateKey(data []byte) (kem.PrivateKey, error) {
-	defer func() {
-		if r := recover(); r != nil {
-			println("panic in UnmarshalPrivateKey:", r)
-		}
-	}()
+	   defer func() {
+			   if r := recover(); r != nil {
+					   println("panic in UnmarshalPrivateKey:", r)
+					   debug.PrintStack()
+			   }
+	   }()
 	return kyber1024.Scheme().UnmarshalBinaryPrivateKey(data)
 }
 
 // MLKEMEncapsulate encapsulates a shared secret using the Kyber1024 public key.
 func MLKEMEncapsulate(publicKey kem.PublicKey) (sharedSecret []byte, ciphertext []byte, err error) {
-	defer func() {
-		if r := recover(); r != nil {
-			println("panic in MLKEMEncapsulate:", r)
-		}
-	}()
+	   defer func() {
+			   if r := recover(); r != nil {
+					   println("panic in MLKEMEncapsulate:", r)
+					   debug.PrintStack()
+			   }
+	   }()
 	if publicKey == nil {
 		return nil, nil, errors.New("invalid public key")
 	}
@@ -99,11 +106,12 @@ func MLKEMEncapsulate(publicKey kem.PublicKey) (sharedSecret []byte, ciphertext 
 
 // MLKEMDecapsulate decapsulates a shared secret using the Kyber1024 private key.
 func MLKEMDecapsulate(privateKey kem.PrivateKey, ciphertext []byte) ([]byte, error) {
-	defer func() {
-		if r := recover(); r != nil {
-			println("panic in MLKEMDecapsulate:", r)
-		}
-	}()
+	   defer func() {
+			   if r := recover(); r != nil {
+					   println("panic in MLKEMDecapsulate:", r)
+					   debug.PrintStack()
+			   }
+	   }()
 	if privateKey == nil || len(ciphertext) == 0 {
 		return nil, errors.New("invalid input")
 	}
@@ -128,11 +136,12 @@ func MLKEMDecapsulate(privateKey kem.PrivateKey, ciphertext []byte) ([]byte, err
 // MLKEMEncapsulateDeterministic encapsulates a shared secret using the Kyber1024 public key and a seed (for KATs).
 // The seed must be of length kyber1024.Scheme().EncapsulationSeedSize().
 func MLKEMEncapsulateDeterministic(publicKey kem.PublicKey, seed []byte) (sharedSecret []byte, ciphertext []byte, err error) {
-	defer func() {
-		if r := recover(); r != nil {
-			println("panic in MLKEMEncapsulateDeterministic:", r)
-		}
-	}()
+	   defer func() {
+			   if r := recover(); r != nil {
+					   println("panic in MLKEMEncapsulateDeterministic:", r)
+					   debug.PrintStack()
+			   }
+	   }()
 	if publicKey == nil {
 		return nil, nil, errors.New("invalid public key")
 	}
@@ -146,11 +155,12 @@ func MLKEMEncapsulateDeterministic(publicKey kem.PublicKey, seed []byte) (shared
 // generateDeterministicMLKEMKeyPair generates a Kyber1024 KEM key pair from a seed (for KATs).
 // The seed must be of length kyber1024.Scheme().SeedSize().
 func generateDeterministicMLKEMKeyPair(seed []byte) (*MLKEMKeyPair, error) {
-	defer func() {
-		if r := recover(); r != nil {
-			println("panic in generateDeterministicMLKEMKeyPair:", r)
-		}
-	}()
+	   defer func() {
+			   if r := recover(); r != nil {
+					   println("panic in generateDeterministicMLKEMKeyPair:", r)
+					   debug.PrintStack()
+			   }
+	   }()
 	if len(seed) != kyber1024.Scheme().SeedSize() {
 		return nil, errors.New("invalid seed size")
 	}
@@ -161,11 +171,12 @@ func generateDeterministicMLKEMKeyPair(seed []byte) (*MLKEMKeyPair, error) {
 // mlkemEncapsulateDeterministic encapsulates a shared secret using the Kyber1024 public key and a seed (for KATs).
 // The seed must be of length kyber1024.Scheme().EncapsulationSeedSize().
 func mlkemEncapsulateDeterministic(publicKey kem.PublicKey, seed []byte) (sharedSecret []byte, ciphertext []byte, err error) {
-	defer func() {
-		if r := recover(); r != nil {
-			println("panic in mlkemEncapsulateDeterministic:", r)
-		}
-	}()
+	   defer func() {
+			   if r := recover(); r != nil {
+					   println("panic in mlkemEncapsulateDeterministic:", r)
+					   debug.PrintStack()
+			   }
+	   }()
 	if publicKey == nil {
 		return nil, nil, errors.New("invalid public key")
 	}
