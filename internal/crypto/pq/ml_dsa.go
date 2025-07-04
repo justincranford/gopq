@@ -48,12 +48,17 @@ func MLDSASign(privateKey []byte, message []byte) ([]byte, error) {
 	}()
 	var sk mldsa87.PrivateKey
 	if err := sk.UnmarshalBinary(privateKey); err != nil {
+		fmt.Printf("MLDSASign: sk.UnmarshalBinary failed: %v\n", err)
+		fmt.Printf("privateKey len: %d\n", len(privateKey))
 		return nil, err
 	}
 	sig, err := sk.Sign(nil, message, nil)
 	if err != nil {
+		fmt.Printf("MLDSASign: sk.Sign failed: %v\n", err)
+		fmt.Printf("message len: %d\n", len(message))
 		return nil, err
 	}
+	fmt.Printf("MLDSASign: sig len: %d\n", len(sig))
 	return sig, nil
 }
 
@@ -66,7 +71,11 @@ func MLDSAVerify(publicKey []byte, message []byte, signature []byte) bool {
 	}()
 	var pk mldsa87.PublicKey
 	if err := pk.UnmarshalBinary(publicKey); err != nil {
+		fmt.Printf("MLDSAVerify: pk.UnmarshalBinary failed: %v\n", err)
+		fmt.Printf("publicKey len: %d\n", len(publicKey))
 		return false
 	}
-	return mldsa87.Verify(&pk, message, nil, signature)
+	valid := mldsa87.Verify(&pk, message, nil, signature)
+	fmt.Printf("MLDSAVerify: valid=%v, message len=%d, signature len=%d\n", valid, len(message), len(signature))
+	return valid
 }
