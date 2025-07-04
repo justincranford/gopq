@@ -38,10 +38,12 @@ The project is implemented in Go, targeting version **1.24.4** and using the lat
 - Provide usage examples in documentation and tests.
 - Maintain a `README.md` with high-level usage and security notes.
 
+
 ## Contribution Guidelines
 - All code must be reviewed and pass CI checks (lint, format, test, fuzz, benchmark).
 - Use descriptive commit messages and PR descriptions.
 - Reference relevant NIST and FIPS documentation in code comments where appropriate.
+- **When requesting a git commit, always perform `git add`, `git commit`, and `git push` together as a single operation, without prompting for each step.**
 
 ---
 
