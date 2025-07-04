@@ -87,3 +87,15 @@ go test -v -bench=. ./internal/crypto/pq
 - [Cloudflare CIRCL](https://github.com/cloudflare/circl)
 - [NIST PQC Standardization](https://csrc.nist.gov/projects/post-quantum-cryptography)
 - [Kyber Specification](https://pq-crystals.org/kyber/)
+
+## R&D Persona Prompts
+
+For role-specific guidance and collaboration, see the following persona prompts in `.github/prompts/`:
+
+- [Product Manager](.github/prompts/prompt-pm.md)
+- [Senior Staff Developer](.github/prompts/prompt-dev.md)
+- [QA Automation Developer](.github/prompts/prompt-qa.md)
+- [Documentation Developer](.github/prompts/prompt-doc.md)
+- [Release Manager](.github/prompts/prompt-release.md)
+- [Marketing VP](.github/prompts/prompt-marketing.md)
+- [Application Security Analyst](.github/prompts/prompt-sec.md)
