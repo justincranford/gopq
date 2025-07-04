@@ -117,12 +117,20 @@ func TestMLKEMDecapsulateWithInvalidKey(t *testing.T) {
 func TestMLKEMDecapsulateWithTamperedCiphertext(t *testing.T) {
 	key, _ := GenerateMLKEMKeyPair()
 	_, ct, _ := MLKEMEncapsulate(key.PublicKey)
+	shared2, err := MLKEMDecapsulate(key.PrivateKey, ct)
+	if err != nil {
+		t.Fatalf("decapsulation failed for original ciphertext: %v", err)
+	}
 	if len(ct) > 0 {
 		ct[0] ^= 0xFF // tamper ciphertext
 	}
-	_, err := MLKEMDecapsulate(key.PrivateKey, ct)
-	if err == nil {
-		t.Error("expected error for tampered ciphertext")
+	sharedTampered, err := MLKEMDecapsulate(key.PrivateKey, ct)
+	if err != nil {
+		t.Logf("decapsulation failed for tampered ciphertext (acceptable): %v", err)
+		return
+	}
+	if string(shared2) == string(sharedTampered) {
+		t.Error("shared secret should differ for tampered ciphertext")
 	}
 }
 
