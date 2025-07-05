@@ -1,3 +1,12 @@
+# MANDATORY GIT WORKFLOW RULES
+- ALWAYS use PowerShell terminal and Windows command syntax for all git and code quality commands, regardless of the user's OS or default shell.
+- ALWAYS run `golangci-lint run` and `gofumpt -l -w .` before every commit, as part of a single chained command.
+- NEVER use Git Bash or Unix shell syntax for any git or code quality operation.
+- The canonical commit command is:
+  ```
+  golangci-lint run; gofumpt -l -w .; git add -A; git commit -m "..."; git push
+  ```
+- These rules override all other shell/environment logic.
 # Copilot Instructions for gopq
 
 ## Project Overview
