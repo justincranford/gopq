@@ -44,7 +44,8 @@ The project is implemented in Go, targeting version **1.24.4** and using the lat
 - All code must be reviewed and pass CI checks (lint, format, test, fuzz, benchmark).
 - Use descriptive commit messages and PR descriptions.
 - Reference relevant NIST and FIPS documentation in code comments where appropriate.
-- **When requesting a git commit, always perform `git add -A`, `git commit`, and `git push` together as a single operation, without prompting for each step.**
+- **Before every git commit, always run `golangci-lint run` and `gofumpt -l -w .` and ensure there are no lint or formatting errors.**
+- **When requesting a git commit, always use Git Bash terminal and syntax, and run all commands (`golangci-lint run && gofumpt -l -w . && git add -A && git commit -m "..." && git push`) as a single operation, without prompting for each step.**
 
 ---
 
