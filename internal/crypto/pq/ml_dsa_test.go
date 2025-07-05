@@ -51,21 +51,36 @@ func FuzzMLDSASignAndVerify(f *testing.F) {
 }
 
 func BenchmarkMLDSASign(b *testing.B) {
-	key, _ := GenerateMLDSAKeyPair()
+	key, err := GenerateMLDSAKeyPair()
+	if err != nil {
+		b.Fatalf("failed to generate ML-DSA key pair: %v", err)
+	}
 	msg := []byte("benchmark message")
 	b.ResetTimer()
 	for i := 0; i < b.N; i++ {
-		MLDSASign(key.PrivateKey, msg)
+		_, err := MLDSASign(key.PrivateKey, msg)
+		if err != nil {
+			b.Fatalf("signing failed: %v", err)
+		}
 	}
 }
 
 func BenchmarkMLDSAVerify(b *testing.B) {
-	key, _ := GenerateMLDSAKeyPair()
+	key, err := GenerateMLDSAKeyPair()
+	if err != nil {
+		b.Fatalf("failed to generate ML-DSA key pair: %v", err)
+	}
 	msg := []byte("benchmark message")
-	sig, _ := MLDSASign(key.PrivateKey, msg)
+	sig, err := MLDSASign(key.PrivateKey, msg)
+	if err != nil {
+		b.Fatalf("signing failed: %v", err)
+	}
 	b.ResetTimer()
 	for i := 0; i < b.N; i++ {
-		MLDSAVerify(key.PublicKey, msg, sig)
+		_, err := MLDSAVerify(key.PublicKey, msg, sig)
+		if err != nil {
+			b.Fatalf("verifying failed: %v", err)
+		}
 	}
 }
 
@@ -77,13 +92,19 @@ func TestMLDSASignWithInvalidKey(t *testing.T) {
 }
 
 func TestMLDSAVerifyWithInvalidKey(t *testing.T) {
-	key, _ := GenerateMLDSAKeyPair()
+	key, err := GenerateMLDSAKeyPair()
+	if err != nil {
+		t.Fatalf("failed to generate ML-DSA key pair: %v", err)
+	}
 	msg := []byte("msg")
-	sig, _ := MLDSASign(key.PrivateKey, msg)
+	sig, err := MLDSASign(key.PrivateKey, msg)
+	if err != nil {
+		t.Fatalf("signing failed: %v", err)
+	}
 	invalidPub := []byte{}
 	isVerify, err := MLDSAVerify(invalidPub, msg, sig)
-	if err != nil {
-		t.Fatalf("verifying failed: %v", err)
+	if err == nil {
+		t.Error("expected error for invalid public key")
 	}
 	if isVerify {
 		t.Error("verify should fail with invalid public key")
@@ -91,9 +112,15 @@ func TestMLDSAVerifyWithInvalidKey(t *testing.T) {
 }
 
 func TestMLDSAVerifyWithTamperedSignature(t *testing.T) {
-	key, _ := GenerateMLDSAKeyPair()
+	key, err := GenerateMLDSAKeyPair()
+	if err != nil {
+		t.Fatalf("failed to generate ML-DSA key pair: %v", err)
+	}
 	msg := []byte("msg")
-	sig, _ := MLDSASign(key.PrivateKey, msg)
+	sig, err := MLDSASign(key.PrivateKey, msg)
+	if err != nil {
+		t.Fatalf("signing failed: %v", err)
+	}
 	isVerify, err := MLDSAVerify(key.PublicKey, msg, sig)
 	if err != nil {
 		t.Fatalf("verifying failed: %v", err)
@@ -105,6 +132,9 @@ func TestMLDSAVerifyWithTamperedSignature(t *testing.T) {
 		sig[0] ^= 0xFF // tamper signature
 	}
 	isVerify, err = MLDSAVerify(key.PublicKey, msg, sig)
+	if err == nil {
+		t.Error("expected error for tampered signature")
+	}
 	if isVerify {
 		t.Error("verify should fail with tampered signature")
 	}

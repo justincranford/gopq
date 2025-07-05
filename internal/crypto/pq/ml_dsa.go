@@ -16,69 +16,69 @@ type MLDSAKeyPair struct {
 
 // GenerateMLDSAKeyPair generates a new ML-DSA key pair using CIRCL ML-DSA-87.
 func GenerateMLDSAKeyPair() (*MLDSAKeyPair, error) {
-	var err error
+	var keyGenerationError error
 	defer func() {
-		if r := recover(); r != nil {
-			err = fmt.Errorf("panic in GenerateMLDSAKeyPair: %v\n%s", r, debug.Stack())
+		if recoveredPanic := recover(); recoveredPanic != nil {
+			keyGenerationError = fmt.Errorf("panic in GenerateMLDSAKeyPair: %v\n%s", recoveredPanic, debug.Stack())
 		}
 	}()
-	pk, sk, err := mldsa87.GenerateKey(nil)
-	if err != nil {
-		return nil, fmt.Errorf("mldsa87.GenerateKey: %w", err)
+	publicKey, privateKey, keyGenerationError := mldsa87.GenerateKey(nil)
+	if keyGenerationError != nil {
+		return nil, fmt.Errorf("mldsa87.GenerateKey: %w", keyGenerationError)
 	}
-	pub, err := pk.MarshalBinary()
-	if err != nil {
-		return nil, fmt.Errorf("pk.MarshalBinary: %w", err)
+	publicKeyBytes, publicKeyMarshalError := publicKey.MarshalBinary()
+	if publicKeyMarshalError != nil {
+		return nil, fmt.Errorf("publicKey.MarshalBinary: %w", publicKeyMarshalError)
 	}
-	priv, err := sk.MarshalBinary()
-	if err != nil {
-		return nil, fmt.Errorf("sk.MarshalBinary: %w", err)
+	privateKeyBytes, privateKeyMarshalError := privateKey.MarshalBinary()
+	if privateKeyMarshalError != nil {
+		return nil, fmt.Errorf("privateKey.MarshalBinary: %w", privateKeyMarshalError)
 	}
 	return &MLDSAKeyPair{
-		PublicKey:  pub,
-		PrivateKey: priv,
+		PublicKey:  publicKeyBytes,
+		PrivateKey: privateKeyBytes,
 	}, nil
 }
 
 // MLDSASign signs a message using the ML-DSA private key (CIRCL ML-DSA-87).
-func MLDSASign(privateKey []byte, message []byte) (sig []byte, err error) {
+func MLDSASign(privateKeyBytes []byte, messageBytes []byte) (signatureBytes []byte, signError error) {
 	defer func() {
-		if r := recover(); r != nil {
-			err = fmt.Errorf("panic in MLDSASign: %v\n%s", r, debug.Stack())
-			sig = nil
+		if recoveredPanic := recover(); recoveredPanic != nil {
+			signError = fmt.Errorf("panic in MLDSASign: %v\n%s", recoveredPanic, debug.Stack())
+			signatureBytes = nil
 		}
 	}()
-	var sk mldsa87.PrivateKey
-	if err := sk.UnmarshalBinary(privateKey); err != nil {
-		fmt.Printf("MLDSASign: sk.UnmarshalBinary failed: %v\n", err)
-		fmt.Printf("privateKey len: %d\n", len(privateKey))
-		return nil, err
+	var privateKey mldsa87.PrivateKey
+	if unmarshalError := privateKey.UnmarshalBinary(privateKeyBytes); unmarshalError != nil {
+		fmt.Printf("MLDSASign: privateKey.UnmarshalBinary failed: %v\n", unmarshalError)
+		fmt.Printf("privateKeyBytes len: %d\n", len(privateKeyBytes))
+		return nil, fmt.Errorf("privateKey.UnmarshalBinary failed: %w", unmarshalError)
 	}
-	sig, err = sk.Sign(nil, message, nil)
-	if err != nil {
-		fmt.Printf("MLDSASign: sk.Sign failed: %v\n", err)
-		fmt.Printf("message len: %d\n", len(message))
-		return nil, err
+	signatureBytes, signError = privateKey.Sign(nil, messageBytes, nil)
+	if signError != nil {
+		fmt.Printf("MLDSASign: privateKey.Sign failed: %v\n", signError)
+		fmt.Printf("messageBytes len: %d\n", len(messageBytes))
+		return nil, fmt.Errorf("privateKey.Sign failed: %w", signError)
 	}
-	fmt.Printf("MLDSASign: sig len: %d\n", len(sig))
-	return sig, nil
+	fmt.Printf("MLDSASign: signatureBytes len: %d\n", len(signatureBytes))
+	return signatureBytes, nil
 }
 
 // MLDSAVerify verifies an ML-DSA signature using CIRCL ML-DSA-87.
-func MLDSAVerify(publicKey []byte, message []byte, signature []byte) (verified bool, err error) {
+func MLDSAVerify(publicKeyBytes []byte, messageBytes []byte, signatureBytes []byte) (isSignatureValid bool, verifyError error) {
 	defer func() {
-		if r := recover(); r != nil {
-			err = fmt.Errorf("panic in MLDSAVerify: %v\n%s", r, debug.Stack())
-			verified = false
+		if recoveredPanic := recover(); recoveredPanic != nil {
+			verifyError = fmt.Errorf("panic in MLDSAVerify: %v\n%s", recoveredPanic, debug.Stack())
+			isSignatureValid = false
 		}
 	}()
-	var pk mldsa87.PublicKey
-	if err := pk.UnmarshalBinary(publicKey); err != nil {
-		fmt.Printf("MLDSAVerify: pk.UnmarshalBinary failed: %v\n", err)
-		fmt.Printf("publicKey len: %d\n", len(publicKey))
-		return false, fmt.Errorf("pk.UnmarshalBinary failed: %w", err)
+	var publicKey mldsa87.PublicKey
+	if unmarshalError := publicKey.UnmarshalBinary(publicKeyBytes); unmarshalError != nil {
+		fmt.Printf("MLDSAVerify: publicKey.UnmarshalBinary failed: %v\n", unmarshalError)
+		fmt.Printf("publicKeyBytes len: %d\n", len(publicKeyBytes))
+		return false, fmt.Errorf("publicKey.UnmarshalBinary failed: %w", unmarshalError)
 	}
-	valid := mldsa87.Verify(&pk, message, nil, signature)
-	fmt.Printf("MLDSAVerify: valid=%v, message len=%d, signature len=%d\n", valid, len(message), len(signature))
-	return valid, nil
+	isSignatureValid = mldsa87.Verify(&publicKey, messageBytes, nil, signatureBytes)
+	fmt.Printf("MLDSAVerify: isSignatureValid=%v, messageBytes len=%d, signatureBytes len=%d\n", isSignatureValid, len(messageBytes), len(signatureBytes))
+	return isSignatureValid, nil
 }

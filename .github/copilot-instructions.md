@@ -7,6 +7,7 @@
   golangci-lint run; gofumpt -l -w .; git add -A; git commit -m "..."; git push
   ```
 - These rules override all other shell/environment logic.
+- ALWAYS use descriptive variable names throughout all code, tests, and documentation. Avoid single-letter or ambiguous names except for idiomatic cases (e.g., error as `err`).
 # Copilot Instructions for gopq
 
 ## Project Overview
