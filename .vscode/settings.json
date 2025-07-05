@@ -1,4 +1,12 @@
 {
     // Enable prompt files for chat integrations
-    "chat.promptFiles": true
+    "chat.promptFiles": true,
+
+    "github.copilot.chat.codeGeneration.instructions": [
+        { "file": "../.github/copilot-instructions.md" },
+        { "file": "../.github/instructions/crypto.instructions.md" }
+    ],
+    "github.copilot.chat.testGeneration.instructions": [
+        { "file": "../.github/instructions/test.instructions.md" }
+    ]
 }
