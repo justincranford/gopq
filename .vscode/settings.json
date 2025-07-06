@@ -9,7 +9,6 @@
         { "file": "../.github/instructions/security.instructions.md" },
         { "file": "../.github/instructions/doc.instructions.md" },
         { "file": "../.github/instructions/project.instructions.md" },
-        { "file": "../.github/instructions/crypto.instructions.md" }
     ],
     "github.copilot.chat.testGeneration.instructions": [
         { "file": "../.github/instructions/test.instructions.md" },

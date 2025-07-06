@@ -21,6 +21,8 @@ These instructions consolidate all Go-specific standards and best practices for 
 - Place all benchmark tests in `<mainfile>_bench_test.go`.
 - Unit tests must be in `<mainfile>_unit_test.go`, fuzz tests in `<mainfile>_fuzz_test.go`, and benchmarks in `<mainfile>_bench_test.go`. After splitting, if `<mainfile>_test.go` is empty, delete it. If not, stop and warn the user to manually review it.
 - Ensure all tests and benchmarks are deterministic and reproducible. Benchmark both typical and edge-case scenarios.
+- Organize code into `cmd/`, `pkg/`, `internal/`, `test/`, and `docs/` directories as appropriate.
+- Use modern Go idioms and APIs.
 
 - Avoid benchmarking code that does I/O or network calls unless necessary. Document any non-determinism or variability in results.
 - Never ignore returned errors or values; always check and assert them.
