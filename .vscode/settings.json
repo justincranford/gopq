@@ -5,6 +5,7 @@
     "github.copilot.chat.codeGeneration.instructions": [
         { "file": "../.github/instructions/copilot-instructions.md" },
         { "file": "../.github/instructions/project.instructions.md" },
+        { "file": "../.github/instructions/commit-instructions.md" },
         { "file": "../.github/instructions/coding.instructions.md" },
         { "file": "../.github/instructions/security.instructions.md" },
         { "file": "../.github/instructions/doc.instructions.md" },
