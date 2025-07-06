@@ -7,6 +7,10 @@ These instructions define how Copilot and other AI code generation tools should 
 
 Copilot must always follow all requirements and best practices in the other instructions files in this directory.
 
+**ALWAYS use the instruction files in this directory as the single source of truth for all standards, requirements, and best practices.**
+
+**ALWAYS update prompts to reference the relevant instruction files, and remove any information from prompts that is already covered by instructions. Prompts should be concise and defer to instructions for all details.**
+
 
 
 **Whenever instruction files or prompt files are added, deleted, renamed, or reorganized, you must:**
@@ -25,6 +29,11 @@ Copilot must always follow all requirements and best practices in the other inst
 - [ ] Only mark the task as complete after validation.
 
 Only include Copilot/AI-specific workflow, meta-instructions, and integration rules here.
+
+# PROMPT MANAGEMENT RULES
+- Prompts must always reference the relevant instruction files for standards and requirements.
+- Prompts must not duplicate information that is already present in the instruction files.
+- If instructions are updated, review and update prompts to ensure they reference the latest instructions and do not contain redundant details.
 
 
 # MANDATORY GIT WORKFLOW RULES
