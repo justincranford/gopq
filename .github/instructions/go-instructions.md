@@ -2,6 +2,7 @@
 
 Copilot must always follow all requirements and best practices in all other instruction files in this directory (e.g., project, coding, test, bench, fuzz, doc, security). If there is a conflict, project-specific instructions take precedence, followed by domain-specific, then general Go standards.
 
+
 These instructions consolidate all Go-specific standards and best practices for this and other Go projects. Use this as the single source of truth for Go code, test, benchmark, documentation, and security requirements.
 
 - Use modern Go idioms, including `b.Loop()` or `b.RunParallel()` for benchmarks instead of legacy for-loops with `b.N`.
@@ -17,15 +18,12 @@ These instructions consolidate all Go-specific standards and best practices for 
 - Use `go mod tidy` to manage dependencies and keep `go.mod`/`go.sum` clean.
 - Reference official documentation and specifications (e.g., NIST, FIPS) in comments where appropriate.
 - Ensure all exported functions are covered by positive and negative tests, fuzz tests, and benchmarks.
-- Use `testify/require` for assertions in all test, fuzz, and benchmark code unless otherwise specified. Only use `t.Error`, `t.Errorf`, or `t.Fatalf` if `testify/require` is not available or not appropriate. Be consistent within each file.
 - Always validate and assert all return values from functions under test. Do not ignore return values with `_`; check their correctness and contents as appropriate.
-- Use modern Go idioms and APIs, including `b.Loop()` or `b.RunParallel()` for benchmarks instead of legacy for-loops with `b.N`.
 - Place all benchmark tests in `<mainfile>_bench_test.go`.
 - Unit tests must be in `<mainfile>_unit_test.go`, fuzz tests in `<mainfile>_fuzz_test.go`, and benchmarks in `<mainfile>_bench_test.go`. After splitting, if `<mainfile>_test.go` is empty, delete it. If not, stop and warn the user to manually review it.
 - Ensure all tests and benchmarks are deterministic and reproducible. Benchmark both typical and edge-case scenarios.
 - Organize code into `cmd/`, `pkg/`, `internal/`, `test/`, and `docs/` directories as appropriate.
 - Use modern Go idioms and APIs.
-
 - Avoid benchmarking code that does I/O or network calls unless necessary. Document any non-determinism or variability in results.
 - Never ignore returned errors or values; always check and assert them.
 - Use idiomatic Go error handling and avoid panics except for unrecoverable errors.
@@ -35,7 +33,6 @@ These instructions consolidate all Go-specific standards and best practices for 
 - Use slices and maps idiomatically.
 - Avoid global state except for constants and configuration.
 - Use context.Context for cancellation and deadlines in APIs.
-- Avoid benchmarking code that does I/O or network calls unless necessary. Document any non-determinism or variability in results.
 - Follow the principle of least privilege for all operations. Document all security assumptions and limitations. Review all code for side-channel and timing attack risks.
 
 ---
