@@ -40,11 +40,16 @@ The project is implemented in Go, targeting version **1.24.4** and using the lat
 - `docs/` — End-user documentation
 
 ## Testing
-- Include unit tests for all exported functions, and always move unit tests to a separate file named `<mainfile>_unit_test.go`. Remove them from `<mainfile>_test.go`.
-- Add fuzz tests for cryptographic primitives and edge cases, and always move fuzz tests to a separate file named `<mainfile>_fuzz_test.go`. Remove them from `<mainfile>_test.go`.
-- Provide performance benchmarks for all major algorithms, and always move benchmark tests to a separate file named `<mainfile>_bench_test.go`. Remove them from `<mainfile>_test.go`.
+- Cover all exported functions, positive and negative paths, and edge cases.
+- Include tests for invalid input, tampering, and error propagation.
+- Use a logging helper (e.g., `logTestStartEnd`) in all test, fuzz, and benchmark functions for traceability, unless using a consistent assertion library (e.g., testify/require) with clear error messages.
+- Use idiomatic Go assertions (`t.Error`, `t.Fatalf`, etc.) or a consistent assertion library (e.g., testify/require). Be consistent within each file.
+- Always check and assert errors, and provide clear, descriptive failure messages.
+- Use `TestMain` and `init` for global setup/teardown if needed.
+- Name all test, fuzz, and benchmark functions clearly and descriptively.
+- Ensure all tests are deterministic and reproducible.
+- Unit tests must be in `<mainfile>_unit_test.go`, fuzz tests in `<mainfile>_fuzz_test.go`, and benchmarks in `<mainfile>_bench_test.go`. Remove them from `<mainfile>_test.go`.
 - After splitting, `<mainfile>_test.go` should be empty or deleted.
-- Ensure tests are reproducible and well-documented.
 
 ## Documentation
 - All exported functions and types must have GoDoc comments.
