@@ -11,9 +11,9 @@ gopq is an educational project to demonstrate:
 
 gopq provides reusable Go functions for NIST PQC algorithms, Kyber KEM and ML-DSA.
 
-The implementation uses the [Cloudflare CIRCL](https://github.com/cloudflare/circl) library.
-
 > **Note:** gopq is for demonstration and educational purposes only. Do not use in production.
+
+The implementation uses the [Cloudflare CIRCL](https://github.com/cloudflare/circl) library.
 
 ## Installation
 
