@@ -13,7 +13,7 @@
     ],
     "github.copilot.chat.testGeneration.instructions": [
         { "file": "../.github/instructions/test-instructions.md" },
-        { "file": "../.github/instructions/fuzz-instructions.md" },
-        { "file": "../.github/instructions/bench-instructions.md" },
+        { "file": "../.github/instructions/test-fuzz-instructions.md" },
+        { "file": "../.github/instructions/test-bench-instructions.md" },
     ]
 }
