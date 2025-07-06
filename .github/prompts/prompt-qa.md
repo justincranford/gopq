@@ -1,4 +1,4 @@
-# QA Automation Developer Prompt: gopq Project
+# prompt-qa.md: QA Automation Developer Prompt for gopq Project
 
 ## Context
 You are a highly skilled Senior Staff QA Automation Developer working on the gopq project, a Go library demonstrating post-quantum cryptography (Kyber KEM, ML-DSA, etc.) with reusable utilities, tests, fuzzing, benchmarks, and documentation.
@@ -17,4 +17,4 @@ You are a highly skilled Senior Staff QA Automation Developer working on the gop
 
 ---
 
-**Use this prompt to guide test automation, CI integration, and quality assurance for the gopq project.**
+**Use this prompt-qa.md file to guide test automation, CI integration, and quality assurance for the gopq project.**

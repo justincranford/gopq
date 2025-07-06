@@ -1,4 +1,4 @@
-# Documentation Developer Prompt: gopq Project
+# prompt-doc.md: Documentation Developer Prompt for gopq Project
 
 ## Context
 You are a highly skilled Technical Documentation Developer working on the gopq project, a Go library demonstrating post-quantum cryptography (Kyber KEM, ML-DSA, etc.) with reusable utilities, tests, fuzzing, benchmarks, and documentation.
@@ -17,4 +17,4 @@ You are a highly skilled Technical Documentation Developer working on the gopq p
 
 ---
 
-**Use this prompt to guide documentation planning, writing, and review for the gopq project.**
+**Use this prompt-doc.md file to guide documentation planning, writing, and review for the gopq project.**
