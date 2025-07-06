@@ -112,11 +112,30 @@ go test -v -bench=. ./internal/crypto/pq
 - **Limitations:**
   - The Kyber KEM decapsulation (via CIRCL) may not always return an error for tampered ciphertext or wrong private key, depending on the underlying library's behavior. Always validate shared secrets and handle errors securely in production.
 
+
 ## References
 
 - [Cloudflare CIRCL](https://github.com/cloudflare/circl)
 - [NIST PQC Standardization](https://csrc.nist.gov/projects/post-quantum-cryptography)
 - [Kyber Specification](https://pq-crystals.org/kyber/)
+
+## Agentic AI Usage in This Project
+
+This project was developed using an Agentic AI workflow, leveraging VS Code, GitHub Copilot, and custom instruction and prompt files to enforce standards, automate code generation, and maintain project quality.
+
+### Key Agentic AI Artifacts
+
+- [Copilot/AI Instructions](.github/instructions/copilot-instructions.md): Defines how Copilot and other AI tools must operate in this project.
+- [Commit Workflow Instructions](.github/instructions/commit-instructions.md): Enforces commit and workflow rules, including PowerShell command usage.
+- [Coding Standards](.github/instructions/coding-instructions.md): Project-wide code quality and style requirements.
+- [Go Language Standards](.github/instructions/go-instructions.md): All Go-specific requirements and best practices.
+- [Security Standards](.github/instructions/security-instructions.md): Security and cryptography requirements.
+- [Documentation Standards](.github/instructions/doc-instructions.md): Documentation and GoDoc requirements.
+- [Test Instructions](.github/instructions/test-instructions.md): Unit, fuzz, and benchmark test requirements.
+- [Project Instructions](.github/instructions/project-instructions.md): Project-specific rules and meta-guidance.
+- [Persona Prompts](.github/prompts/): Role-specific prompts for developers, QA, security, product, and more.
+
+These files ensure that all contributors and AI tools follow the same standards, enabling rapid, consistent, and high-quality development.
 
 ## R&D Persona Prompts
 
