@@ -1,5 +1,7 @@
 # Go Language Instructions
 
+Copilot must always follow all requirements and best practices in all other instruction files in this directory (e.g., project, coding, test, bench, fuzz, doc, security). If there is a conflict, project-specific instructions take precedence, followed by domain-specific, then general Go standards.
+
 These instructions consolidate all Go-specific standards and best practices for this and other Go projects. Use this as the single source of truth for Go code, test, benchmark, documentation, and security requirements.
 
 - Use modern Go idioms, including `b.Loop()` or `b.RunParallel()` for benchmarks instead of legacy for-loops with `b.N`.
