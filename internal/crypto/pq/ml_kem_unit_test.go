@@ -1,6 +1,9 @@
 package pq
 
-import "testing"
+import (
+	"crypto/subtle"
+	"testing"
+)
 
 func TestGenerateMLKEMKeyPair(t *testing.T) {
 	keyPair, err := GenerateMLKEMKeyPair()
@@ -41,14 +44,8 @@ func TestMLKEMEncapsulateAndDecapsulate(t *testing.T) {
 	if err != nil {
 		t.Fatalf("decapsulation failed: %v", err)
 	}
-	if len(sharedSecret) != len(sharedSecret2) || sharedSecret == nil || sharedSecret2 == nil {
-		t.Error("shared secrets should have same length and not be nil")
-	}
-	for i := range sharedSecret {
-		if sharedSecret[i] != sharedSecret2[i] {
-			t.Error("shared secrets do not match")
-			break
-		}
+	if subtle.ConstantTimeCompare(sharedSecret, sharedSecret2) == 0 {
+		t.Error("shared secrets were expected to match, decapculate with private key and ciphertext should have returned a same shared secret as encapculate with public key")
 	}
 }
 
@@ -82,8 +79,8 @@ func TestMLKEMDecapsulateWithTamperedCiphertext(t *testing.T) {
 		t.Logf("decapsulation failed for tampered ciphertext (acceptable): %v", err)
 		return
 	}
-	if string(sharedSecret) == string(sharedSecretTampered) {
-		t.Error("shared secret should differ for tampered ciphertext")
+	if subtle.ConstantTimeCompare(sharedSecret, sharedSecretTampered) == 1 {
+		t.Error("shared secrets were expected to be different, decapsulated with tampered ciphertext should have returned a different shared secret")
 	}
 }
 
@@ -96,7 +93,7 @@ func TestMLKEMDecapsulateWithWrongKey(t *testing.T) {
 		t.Logf("decapsulation failed for wrong private key (acceptable): %v", err)
 		return
 	}
-	if string(sharedSecret) == string(sharedWrong) {
-		t.Error("shared secret should differ when decapsulated with wrong private key")
+	if subtle.ConstantTimeCompare(sharedSecret, sharedWrong) == 1 {
+		t.Error("shared secrets were expected to be different, decapsulated with wrong private key should have returned a different shared secret")
 	}
 }
