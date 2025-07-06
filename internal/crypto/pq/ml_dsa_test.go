@@ -148,6 +148,7 @@ func TestMLDSAVerifyWithInvalidKey(t *testing.T) {
 		t.Error("verify should fail with invalid public key")
 	}
 }
+
 func TestMLDSAVerifyWithTamperedSignature(t *testing.T) {
 	logTestStartEnd(t)
 	key, err := GenerateMLDSAKeyPair()
