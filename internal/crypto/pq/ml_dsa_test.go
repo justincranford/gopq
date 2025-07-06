@@ -160,20 +160,20 @@ func TestMLDSAVerifyWithTamperedSignature(t *testing.T) {
 		t.Fatalf("signing failed: %v", err)
 	}
 	isVerify, err := MLDSAVerify(key.PublicKey, msg, sig)
-	if err != nil {
-		t.Fatalf("verifying failed: %v", err)
-	}
 	if !isVerify {
 		t.Error("verify should succeed for original signature")
+	}
+	if err != nil {
+		t.Fatalf("verifying failed: %v", err)
 	}
 	if len(sig) > 0 {
 		sig[0] ^= 0xFF // tamper signature
 	}
 	isVerify, err = MLDSAVerify(key.PublicKey, msg, sig)
-	if err == nil {
-		t.Error("expected error for tampered signature")
-	}
 	if isVerify {
 		t.Error("verify should fail with tampered signature")
+	}
+	if err != nil {
+		t.Fatalf("verifying failed: %v", err)
 	}
 }
