@@ -1,4 +1,4 @@
-# Benchmark Instructions
+# Benchmark Test Instructions
 
 These instructions define standards for writing and maintaining benchmarks.
 
@@ -17,7 +17,7 @@ These instructions define standards for writing and maintaining benchmarks.
 
 ---
 
-**For all Go-specific requirements and best practices (e.g., idioms, assertions, error handling), see `go.instructions.md`.**
+**For all Go-specific requirements and best practices (e.g., idioms, assertions, error handling), see `go-instructions.md`.**
 
 ---
 

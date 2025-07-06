@@ -1,9 +1,9 @@
-# Test Generation Instructions
+# Unit Test Instructions
 
-These instructions guide Copilot and other code generation tools for test code in the gopq project.
+These instructions guide Copilot and other code generation tools for unit test code in the gopq project.
 
 ## Requirements
-- For all Go-specific requirements and best practices, see `go.instructions.md`.
+- For all Go-specific requirements and best practices, see `go-instructions.md`.
 - Cover all exported functions, positive and negative paths, boundary conditions, corner cases, and edge cases
 - Include tests for invalid input, tampering, and error propagation
 - Ensure coverage of both functional and non-functional requirements, including:
@@ -27,11 +27,11 @@ These instructions guide Copilot and other code generation tools for test code i
 
 ## Example: Compliant Test Function
 
-For a Go test example, see `go.instructions.md`.
+For a Go test example, see `go-instructions.md`.
 
 ## Best Practices
-- For all Go-specific best practices, see `go.instructions.md`.
+- For all Go-specific best practices, see `go-instructions.md`.
 
 ---
 
-**Use this file to guide all test code generation for the gopq project.**
+**Use this file to guide all unit test code generation for the gopq project.**

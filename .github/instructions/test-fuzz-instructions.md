@@ -1,9 +1,9 @@
-# Fuzz Testing Instructions
+# Fuzz Test Instructions
 
 These instructions define standards for writing and maintaining fuzz tests.
 
 ## Requirements
-- For all Go-specific requirements and best practices, see `go.instructions.md`.
+- For all Go-specific requirements and best practices, see `go-instructions.md`.
 - Fuzz tests must validate input handling, robustness, and reliability of all exported functions and APIs.
 - Cover edge cases, malformed input, and tampering scenarios.
 - Ensure fuzz tests exercise recovery from invalid or unexpected input.
