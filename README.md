@@ -27,52 +27,73 @@ Clone or vendor this repository as needed:
 git clone https://github.com/your-org/gopq.git
 ```
 
+
 ## Usage
 
-### Key Generation
+### ML-KEM (Kyber KEM) Example
 
 ```go
 import "github.com/cloudflare/circl/kem/kyber/kyber1024"
 import "your-module-path/internal/crypto/pq"
 
 // Generate a random Kyber1024 KEM keypair
-key, err := pq.GenerateMLKEMKeyPair()
+mlkemKey, err := pq.GenerateMLKEMKeyPair()
 if err != nil {
     // handle error
 }
-```
 
-### Key Serialization
-
-```go
-pubBytes, _ := pq.MarshalPublicKey(key.PublicKey)
-privBytes, _ := pq.MarshalPrivateKey(key.PrivateKey)
-
-// Deserialize
+// Serialize and deserialize keys
+pubBytes, _ := pq.MarshalPublicKey(mlkemKey.PublicKey)
+privBytes, _ := pq.MarshalPrivateKey(mlkemKey.PrivateKey)
 pub, _ := pq.UnmarshalPublicKey(pubBytes)
 priv, _ := pq.UnmarshalPrivateKey(privBytes)
-```
 
-### Encapsulation/Decapsulation
-
-```go
 // Encapsulate a shared secret
-sharedSecret, ciphertext, err := pq.MLKEMEncapsulate(key.PublicKey)
+ciphertext, sharedSecret, err := pq.MLKEMEncapsulate(pub)
 
 // Decapsulate the shared secret
-recoveredSecret, err := pq.MLKEMDecapsulate(key.PrivateKey, ciphertext)
-```
+recoveredSecret, err := pq.MLKEMDecapsulate(priv, ciphertext)
 
-### Deterministic KATs (for test vectors)
-
-```go
 // Deterministic keypair (for KATs)
 seed := make([]byte, kyber1024.Scheme().SeedSize())
 detKey, err := pq.GenerateDeterministicMLKEMKeyPair(seed)
 
 // Deterministic encapsulation (for KATs)
 encSeed := make([]byte, kyber1024.Scheme().EncapsulationSeedSize())
-shared, ct, err := pq.MLKEMEncapsulateDeterministic(detKey.PublicKey, encSeed)
+ct, shared, err := pq.MLKEMEncapsulateDeterministic(detKey.PublicKey, encSeed)
+```
+
+### ML-DSA (ML-DSA-87) Example
+
+```go
+import "github.com/cloudflare/circl/sign/mldsa/mldsa87"
+import "your-module-path/internal/crypto/pq"
+
+// Generate a random ML-DSA keypair
+mldsaKey, err := pq.GenerateMLDSAKeyPair()
+if err != nil {
+    // handle error
+}
+
+// Deterministic keypair (from seed)
+var seed [mldsa87.SeedSize]byte
+detDSAKey, err := pq.DeriveMLDSAKeyPair(&seed)
+
+// Sign a message
+message := []byte("hello world")
+signature, err := pq.MLDSASign(mldsaKey.PrivateKey, message)
+if err != nil {
+    // handle error
+}
+
+// Verify a signature
+valid, err := pq.MLDSAVerify(mldsaKey.PublicKey, message, signature)
+if err != nil {
+    // handle error
+}
+if !valid {
+    // signature invalid
+}
 ```
 
 ## Testing
