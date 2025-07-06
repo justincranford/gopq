@@ -13,7 +13,7 @@ These instructions consolidate all Go-specific standards and best practices for 
 - Always check for the latest Go, linter, and dependency versions before starting new work.
 - All code must pass `golangci-lint run --fix` and `gofumpt -l -w .` before commit.
 - Use `go mod tidy` to manage dependencies and keep `go.mod`/`go.sum` clean.
-- Organize code into `cmd/`, `pkg/`, `internal/`, `test/`, and `docs/` directories as appropriate.
+- Organize code into `cmd/`, `pkg/`, `internal/`, `test/`, and `docs/` directories as appropriate. For libraries, all public APIs and their tests must be in a public package (e.g., `pq/`), not under `internal/`. Only implementation details or helpers not meant for users should be in `internal/`.
 - Always wrap errors with `fmt.Errorf(..., %w, ...)` for traceability.
 - Always have GoDoc comments for exported functions, types, and packages.
 - Always provide usage examples in GoDoc, documentation, and test files.

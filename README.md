@@ -34,7 +34,7 @@ git clone https://github.com/your-org/gopq.git
 
 ```go
 import "github.com/cloudflare/circl/kem/kyber/kyber1024"
-import "gopq/internal/crypto/pq"
+import "gopq/pq"
 
 // Generate a random Kyber1024 KEM keypair
 mlkemKey, err := pq.GenerateMLKEMKeyPair()
@@ -67,7 +67,7 @@ ct, shared, err := pq.MLKEMEncapsulateDeterministic(detKey.PublicKey, encSeed)
 
 ```go
 import "github.com/cloudflare/circl/sign/mldsa/mldsa87"
-import "gopq/internal/crypto/pq"
+import "gopq/pq"
 
 // Generate a random ML-DSA keypair
 mldsaKey, err := pq.GenerateMLDSAKeyPair()
@@ -101,7 +101,7 @@ if !valid {
 Run all tests and benchmarks:
 
 ```
-go test -v -bench=. ./internal/crypto/pq
+go test -v -bench=. ./pq
 ```
 
 ## Security Notes
