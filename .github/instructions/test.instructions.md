@@ -2,10 +2,17 @@
 
 These instructions guide Copilot and other code generation tools for test code in the gopq project.
 
+- For all Go-specific requirements and best practices, see `go.instructions.md`.
+- Cover all exported functions, positive and negative paths, boundary conditions, corner cases, and edge cases
+- Include tests for invalid input, tampering, and error propagation
 ## Requirements
 - For all Go-specific requirements and best practices, see `go.instructions.md`.
 - Cover all exported functions, positive and negative paths, boundary conditions, corner cases, and edge cases
 - Include tests for invalid input, tampering, and error propagation
+- Ensure coverage of both functional and non-functional requirements, including:
+  - Customer-facing and user-facing APIs
+  - Deployment and decommissioning processes
+  - Disaster recovery and business continuity scenarios
 - **Always prioritize using the `testify/require` assertion library for all assertions and error checks. Only use `t.Error`, `t.Errorf`, or `t.Fatalf` if `testify/require` is not available or not appropriate. Be consistent within each file.**
 - Use `TestMain` and `init` for global setup/teardown if needed
 - Name all test, fuzz, and benchmark functions clearly and descriptively

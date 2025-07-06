@@ -7,6 +7,12 @@ These instructions define standards for writing and maintaining benchmarks.
 
 ## Best Practices
 - Benchmark both typical and edge-case scenarios.
+- Cover performance aspects including:
+  - Startup and shutdown time
+  - Scalability (e.g., increasing load, resource usage)
+  - Throughput (operations per second, bandwidth)
+  - Latency (response time, tail latency)
+  - Recovery time (from failure or restart)
 - Document any non-determinism or variability in results.
 
 ---
