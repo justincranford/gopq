@@ -9,15 +9,38 @@ These instructions guide Copilot and other code generation tools for test code i
 - Always check and assert errors, and provide clear, descriptive failure messages
 - Always check and assert all return values (and their contents if they are structs, maps, slices, arrays, etc), and provide clear, descriptive failure messages
 - Use `TestMain` and `init` for global setup/teardown if needed
-- Name all test, fuzz, and benchmark functions clearly and descriptively
 - Ensure all tests are deterministic and reproducible
-- Unit tests must be in `<mainfile>_unit_test.go`, fuzz tests in `<mainfile>_fuzz_test.go`, and benchmarks in `<mainfile>_bench_test.go`. Remove them from `<mainfile>_test.go`
-- After splitting, `<mainfile>_test.go` should be empty or deleted
+- Name all test, fuzz, and benchmark functions clearly and descriptively
+- Unit tests must be in `<mainfile>_unit_test.go`
+- Fuzz tests must be in `<mainfile>_fuzz_test.go`
+- Benchmark tests must be in `<mainfile>_bench_test.go`
+- If any tests are in `<mainfile>_test.go`, instead of `<mainfile>_unit_test.go`, `<mainfile>_fuzz_test.go`, or `<mainfile>_bench_test.go`, split them into the appropriate files:
+  - Move unit tests to `<mainfile>_unit_test.go`
+  - Move fuzz tests to `<mainfile>_fuzz_test.go`
+  - Move benchmark tests to `<mainfile>_bench_test.go`
+- After splitting, if `<mainfile>_test.go` should be empty. If it is empty, delete it. If it is not empty, stop and warn the user to manually review it.
+
+## Example: Compliant Test Function
+
+Here is an example of a compliant unit test using `testify/require`:
+
+```go
+import (
+    "testing"
+    "github.com/stretchr/testify/require"
+)
+
+func TestExample_Addition_Unit(t *testing.T) {
+    result := 2 + 2
+    require.Equal(t, 4, result, "Addition result should be 4")
+}
+```
 
 ## Best Practices
 - Use Go 1.24.4 features and idioms
 - Reference official NIST/FIPS documentation in comments where appropriate
 - All code must pass `golangci-lint run --fix` and `gofumpt -l -w .` before commit
+- All exported functions must have both positive and negative test cases.
 
 ---
 
