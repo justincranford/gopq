@@ -3,11 +3,14 @@
 These instructions guide Copilot and other code generation tools for test code in the gopq project.
 
 ## Requirements
+- Use clear, descriptive variable names throughout all test code. Avoid ambiguous or single-letter names except for idiomatic cases (e.g., err).
+- Always validate and assert all return values from functions under test. Do not ignore return values with `_`; check their correctness and contents as appropriate.
+- Use modern Go idioms and APIs, including `b.Loop()` for benchmarks instead of legacy for-loops with `b.N`.
 - Cover all exported functions, positive and negative paths, and edge cases
 - Include tests for invalid input, tampering, and error propagation
 - **Always prioritize using the `testify/require` assertion library for all assertions and error checks. Only use `t.Error`, `t.Errorf`, or `t.Fatalf` if `testify/require` is not available or not appropriate. Be consistent within each file.**
-- Always check and assert errors, and provide clear, descriptive failure messages
-- Always check and assert all return values (and their contents if they are structs, maps, slices, arrays, etc), and provide clear, descriptive failure messages
+- Always check and assert errors, and provide clear, descriptive failure messages.
+- Always check and assert all return values (and their contents if they are structs, maps, slices, arrays, etc), and provide clear, descriptive failure messages. Do not ignore any return value.
 - Use `TestMain` and `init` for global setup/teardown if needed
 - Ensure all tests are deterministic and reproducible
 - Name all test, fuzz, and benchmark functions clearly and descriptively
