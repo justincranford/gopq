@@ -1,6 +1,15 @@
+
 # gopq
 
-Go examples of Post Quantum algorithms
+**Educational Project: Post-Quantum Safe Utility Functions with Agent AI**
+
+gopq is an educational project for implementing post-quantum safe cryptographic utility functions in Go. It is also a demonstration of using Agent AI to create, enforce, and document robust standards for post-quantum cryptography code, tests, and developer workflow.
+
+## Overview
+
+gopq provides reusable Go utilities for post-quantum cryptography, focusing on NIST PQC algorithms (Kyber KEM, ML-DSA, etc.) using the [Cloudflare CIRCL](https://github.com/cloudflare/circl) library.
+
+> **Note:** This library is for demonstration and educational purposes only. Do not use in production without a full security review.
 
 ## Overview
 
