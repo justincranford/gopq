@@ -5,16 +5,21 @@ Copilot must always follow all requirements and best practices in all other inst
 
 These instructions consolidate all Go-specific standards and best practices for this and other Go projects. Use this as the single source of truth for Go code, test, benchmark, documentation, and security requirements.
 
+- ALWAYS run `golangci-lint run --fix` and `gofumpt -l -w .` before every commit, and fix all warnings and errors before continuing with the commit, as part of a single chained command. Use `golangci-lint run --fix` to automatically fix all fixable lint issues.
+- The canonical commit command is:
+  ```
+  golangci-lint run --fix; gofumpt -l -w .; git add -A; git commit -m "..."; git push
+  ```
+- Always check for the latest Go, linter, and dependency versions before starting new work.
+- Use Go 1.24.4 or later features and idioms.
 - Use modern Go idioms, including `b.Loop()` or `b.RunParallel()` for benchmarks instead of legacy for-loops with `b.N`.
 - Always validate and assert all return values in benchmarks.
 - Use descriptive variable names and document the purpose of each benchmark.
 - Use `testify/require` for assertions in all test, fuzz, and benchmark code unless otherwise specified. Only use `t.Error`, `t.Errorf`, or `t.Fatalf` if `testify/require` is not available or not appropriate. Be consistent within each file.
-- Use Go 1.24.4 or later features and idioms.
 - Use clear, descriptive variable and function names throughout all code and tests. Avoid ambiguous or single-letter names except for idiomatic cases (e.g., err).
 - All errors must be wrapped with `fmt.Errorf(..., %w, ...)` for traceability.
 - All exported functions, types, and packages must have GoDoc comments.
 - Provide usage examples in GoDoc, documentation, and test files.
-- All code must pass `golangci-lint run --fix` and `gofumpt -l -w .` before commit.
 - Use `go mod tidy` to manage dependencies and keep `go.mod`/`go.sum` clean.
 - Reference official documentation and specifications (e.g., NIST, FIPS) in comments where appropriate.
 - Ensure all exported functions are covered by positive and negative tests, fuzz tests, and benchmarks.
