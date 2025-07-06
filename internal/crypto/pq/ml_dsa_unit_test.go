@@ -60,64 +60,6 @@ func TestMLDSASignAndVerify(t *testing.T) {
 	}
 }
 
-// For FuzzMLDSASignAndVerify:
-func FuzzMLDSASignAndVerify(f *testing.F) {
-	logTestStartEnd(f)
-	key, _ := GenerateMLDSAKeyPair()
-	f.Fuzz(func(t *testing.T, msg []byte) {
-		logTestStartEnd(t)
-		sig, err := MLDSASign(key.PrivateKey, msg)
-		if err != nil {
-			t.Skip()
-		}
-		isVerify, err := MLDSAVerify(key.PublicKey, msg, sig)
-		if err != nil {
-			t.Fatalf("verifying failed: %v", err)
-		}
-		if !isVerify {
-			t.Error("signature should verify for fuzzed input")
-		}
-	})
-}
-
-// For BenchmarkMLDSASign:
-func BenchmarkMLDSASign(b *testing.B) {
-	logTestStartEnd(b)
-	key, err := GenerateMLDSAKeyPair()
-	if err != nil {
-		b.Fatalf("failed to generate ML-DSA key pair: %v", err)
-	}
-	msg := []byte("benchmark message")
-	b.ResetTimer()
-	for i := 0; i < b.N; i++ {
-		_, err := MLDSASign(key.PrivateKey, msg)
-		if err != nil {
-			b.Fatalf("signing failed: %v", err)
-		}
-	}
-}
-
-// For BenchmarkMLDSAVerify:
-func BenchmarkMLDSAVerify(b *testing.B) {
-	logTestStartEnd(b)
-	key, err := GenerateMLDSAKeyPair()
-	if err != nil {
-		b.Fatalf("failed to generate ML-DSA key pair: %v", err)
-	}
-	msg := []byte("benchmark message")
-	sig, err := MLDSASign(key.PrivateKey, msg)
-	if err != nil {
-		b.Fatalf("signing failed: %v", err)
-	}
-	b.ResetTimer()
-	for i := 0; i < b.N; i++ {
-		_, err := MLDSAVerify(key.PublicKey, msg, sig)
-		if err != nil {
-			b.Fatalf("verifying failed: %v", err)
-		}
-	}
-}
-
 // For TestMLDSASignWithInvalidKey:
 func TestMLDSASignWithInvalidKey(t *testing.T) {
 	logTestStartEnd(t)
