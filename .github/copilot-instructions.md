@@ -40,9 +40,10 @@ The project is implemented in Go, targeting version **1.24.4** and using the lat
 - `docs/` — End-user documentation
 
 ## Testing
-- Include unit tests for all exported functions, and always group unit tests in a separate file named `<mainfile>_unit_test.go`.
-- Add fuzz tests for cryptographic primitives and edge cases, and always group fuzz tests in a separate file named `<mainfile>_fuzz_test.go`.
-- Provide performance benchmarks for all major algorithms, and always group benchmark tests in a separate file named `<mainfile>_bench_test.go`.
+- Include unit tests for all exported functions, and always move unit tests to a separate file named `<mainfile>_unit_test.go`. Remove them from `<mainfile>_test.go`.
+- Add fuzz tests for cryptographic primitives and edge cases, and always move fuzz tests to a separate file named `<mainfile>_fuzz_test.go`. Remove them from `<mainfile>_test.go`.
+- Provide performance benchmarks for all major algorithms, and always move benchmark tests to a separate file named `<mainfile>_bench_test.go`. Remove them from `<mainfile>_test.go`.
+- After splitting, `<mainfile>_test.go` should be empty or deleted.
 - Ensure tests are reproducible and well-documented.
 
 ## Documentation
