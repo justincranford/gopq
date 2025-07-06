@@ -8,6 +8,7 @@
   ```
 - These rules override all other shell/environment logic.
 - ALWAYS use descriptive variable names throughout all code, tests, and documentation. Avoid single-letter or ambiguous names except for idiomatic cases (e.g., error as `err`).
+
 # Copilot Instructions for gopq
 
 ## Project Overview
@@ -39,9 +40,9 @@ The project is implemented in Go, targeting version **1.24.4** and using the lat
 - `docs/` — End-user documentation
 
 ## Testing
-- Include unit tests for all exported functions.
-- Add fuzz tests for cryptographic primitives and edge cases.
-- Provide performance benchmarks for all major algorithms.
+- Include unit tests for all exported functions, and always group unit tests in a separate file named `<mainfile>_unit_test.go`.
+- Add fuzz tests for cryptographic primitives and edge cases, and always group fuzz tests in a separate file named `<mainfile>_fuzz_test.go`.
+- Provide performance benchmarks for all major algorithms, and always group benchmark tests in a separate file named `<mainfile>_bench_test.go`.
 - Ensure tests are reproducible and well-documented.
 
 ## Documentation
