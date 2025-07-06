@@ -1,21 +1,19 @@
 
-# gopq
+# Post-Quantum (PQ) Safe Cryptography Go Library
 
-**Educational Project: Post-Quantum Safe Utility Functions with Agent AI**
+**Educational Project: Post-Quantum Safe Utility Cryptography created with Agentic AI**
 
-gopq is an educational project for implementing post-quantum safe cryptographic utility functions in Go. It is also a demonstration of using Agent AI to create, enforce, and document robust standards for post-quantum cryptography code, tests, and developer workflow.
-
-## Overview
-
-gopq provides reusable Go utilities for post-quantum cryptography, focusing on NIST PQC algorithms (Kyber KEM, ML-DSA, etc.) using the [Cloudflare CIRCL](https://github.com/cloudflare/circl) library.
-
-> **Note:** This library is for demonstration and educational purposes only. Do not use in production without a full security review.
+gopq is an educational project to demonstrate:
+1. Post-quantum (PQ) Safe Cryptography; ML-DSA for signing, and ML-PEM for encryption.
+2. Agentic AI for rapid development; vscode + Copilot instructions and prompts.
 
 ## Overview
 
-gopq provides reusable Go utilities for post-quantum cryptography, focusing on NIST PQC algorithms (Kyber KEM, ML-DSA, etc.) using the [Cloudflare CIRCL](https://github.com/cloudflare/circl) library.
+gopq provides reusable Go functions for NIST PQC algorithms, Kyber KEM and ML-DSA.
 
-> **Note:** This library is for demonstration and educational purposes only. Do not use in production without a full security review.
+The implementation uses the [Cloudflare CIRCL](https://github.com/cloudflare/circl) library.
+
+> **Note:** gopq is for demonstration and educational purposes only. Do not use in production.
 
 ## Installation
 
@@ -87,11 +85,10 @@ go test -v -bench=. ./internal/crypto/pq
 
 ## Security Notes
 
-- Never log or expose private keys or shared secrets in production.
 - This library is for demonstration and educational use only.
 - For production, use vetted libraries and follow NIST/FIPS guidance.
+- Never log or expose private keys or shared secrets in production.
 - **Limitations:**
-  - The ML-DSA implementation is a placeholder and does not provide real cryptographic signature verification. Negative tests for tampered signatures may not be fully enforced.
   - The Kyber KEM decapsulation (via CIRCL) may not always return an error for tampered ciphertext or wrong private key, depending on the underlying library's behavior. Always validate shared secrets and handle errors securely in production.
 
 ## References
