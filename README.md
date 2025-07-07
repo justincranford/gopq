@@ -127,16 +127,24 @@ This project was developed using an Agentic AI workflow, leveraging VS Code, Git
 
 Instruction files ensure that all human contributors and AI personas follow the same standards. They are in the [.github/instructions/](.github/instructions/) directory:
 
+AI
+
 - [copilot-instructions.md](.github/instructions/copilot-instructions.md)
+
+Development
+
 - [commit-instructions.md](.github/instructions/commit-instructions.md)
 - [coding-instructions.md](.github/instructions/coding-instructions.md)
 - [go-instructions.md](.github/instructions/go-instructions.md)
 - [security-instructions.md](.github/instructions/security-instructions.md)
 - [doc-instructions.md](.github/instructions/doc-instructions.md)
+- [project-instructions.md](.github/instructions/project-instructions.md)
+
+Testing
+
 - [test-instructions.md](.github/instructions/test-instructions.md)
 - [test-fuzz-instructions.md](.github/instructions/test-fuzz-instructions.md)
 - [test-bench-instructions.md](.github/instructions/test-bench-instructions.md)
-- [project-instructions.md](.github/instructions/project-instructions.md)
 
 Design intent is for all instruction files to be generic and reusable for other R&D projects, except for project-instructions, which is project-specific.
 
