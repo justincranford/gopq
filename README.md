@@ -10,13 +10,20 @@ gopq is an educational project to demonstrate:
 
 ## Post-quantum Cryptography
 
+### Overview
+
+<details>
+<summary><strong>Overview</strong></summary>
+
 gopq provides reusable Go functions for PQC algorithms; ML-DSA for signing, and ML-KEM for encryption.
 
 > **Note:** gopq is for demonstration and educational purposes only. Do not use in production.
 
 The implementation uses the [Cloudflare CIRCL](https://github.com/cloudflare/circl) library.
 
-### Usage
+</details>
+
+### Installation
 
 <details>
 <summary><strong>Installation</strong></summary>
@@ -201,6 +208,9 @@ Design intent for the instruction files is to be generic and reusable for my oth
 
 ### Prompt Files
 
+<details>
+<summary><strong>Prompt Files</strong></summary>
+
 All prompt files are in the [.github/prompts/](.github/prompts/) directory.
 
 - [prompt-dev.md](.github/prompts/prompt-dev.md)
@@ -212,7 +222,12 @@ All prompt files are in the [.github/prompts/](.github/prompts/) directory.
 
 Prompt files are personas for AI Agents to adopt more focused context when performing tasks. See Additional Details.
 
+</details>
+
 ### Additional Details
+
+<details>
+<summary><strong>Additional Details</strong></summary>
 
 Instruction files define standards and rules that apply to both human contributors and AI agents.
 
@@ -223,3 +238,5 @@ When a human contributor interacts with Agentic AI:
 AI effectiveness can increase when given more specific and narrow context.
 
 For example, you can get good but mixed results using Copilot Chat. Switching to a persona (e.g., Dev, QA, PM) can narrow the context, and help AI give you the better expertise and results you were expecting.
+
+</details>
