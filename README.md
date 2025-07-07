@@ -147,9 +147,9 @@ This project was developed using an Agentic AI workflow, leveraging:
 - GitHub Copilot
 - Custom instruction and prompt files
 
-The main configuration file is `settings.json`. It lists the instruction and prompt files to be used.
+The main configuration file is [.vscode/settings.json](.vscode/settings.json). It lists the instruction and prompt files to be used.
 
-- [.vscode/settings.json](.vscode/settings.json)
+- 
 
 ### General R&D Instruction Files
 
