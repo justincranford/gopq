@@ -142,7 +142,12 @@ To generate and view GoDoc documentation locally:
 
 ## Agentic AI Usage in This Project
 
-This project was developed using an Agentic AI workflow, leveraging VS Code, GitHub Copilot, and custom instruction and prompt files. The main configuration file is `settings.json`. It lists the instruction and prompt files to be used.
+This project was developed using an Agentic AI workflow, leveraging:
+- VS Code
+- GitHub Copilot
+- Custom instruction and prompt files
+
+The main configuration file is `settings.json`. It lists the instruction and prompt files to be used.
 
 - [.vscode/settings.json](.vscode/settings.json)
 
