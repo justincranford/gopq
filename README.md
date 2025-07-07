@@ -124,7 +124,8 @@ This project was developed using an Agentic AI workflow, leveraging VS Code, Git
 
 ### General R&D Instruction Files
 
-Instruction files ensure that all human contributors and AI personas follow the same standards. They are in the [.github/instructions/](.github/instructions/) directory.
+
+Instruction files ensure that all human contributors and AI personas follow the same standards. They are in the [.github/instructions/](.github/instructions/) directory:
 
 - [copilot-instructions.md](.github/instructions/copilot-instructions.md)
 - [commit-instructions.md](.github/instructions/commit-instructions.md)
@@ -133,21 +134,23 @@ Instruction files ensure that all human contributors and AI personas follow the 
 - [security-instructions.md](.github/instructions/security-instructions.md)
 - [doc-instructions.md](.github/instructions/doc-instructions.md)
 - [test-instructions.md](.github/instructions/test-instructions.md)
+- [test-fuzz-instructions.md](.github/instructions/test-fuzz-instructions.md)
+- [test-bench-instructions.md](.github/instructions/test-bench-instructions.md)
 - [project-instructions.md](.github/instructions/project-instructions.md)
 
- Design intent is for all instruction files to be generic, so they are potentially reusable for my other R&D projects. The exception is project-instructions, which is project-specific.
+Design intent is for all instruction files to be generic and reusable for other R&D projects, except for project-instructions, which is project-specific.
 
 ### Persona Prompt Files
 
-All of these files are persona prompts in the [.github/prompts/](.github/prompts/) directory.
 
-- [prompt-pm.md](.github/prompts/prompt-pm.md)
+All of these files are persona prompts in the [.github/prompts/](.github/prompts/) directory:
+
 - [prompt-dev.md](.github/prompts/prompt-dev.md)
 - [prompt-qa.md](.github/prompts/prompt-qa.md)
-- [prompt-doc.md](.github/prompts/prompt-doc.md)
-- [prompt-release.md](.github/prompts/prompt-release.md)
-- [prompt-marketing.md](.github/prompts/prompt-marketing.md)
+- [prompt-pm.md](.github/prompts/prompt-pm.md)
 - [prompt-sec.md](.github/prompts/prompt-sec.md)
+- [prompt-doc.md](.github/prompts/prompt-doc.md)
+- [prompt-marketing.md](.github/prompts/prompt-marketing.md)
 
 ### Additional Details
 

@@ -4,16 +4,16 @@
 
     "github.copilot.chat.codeGeneration.instructions": [
         { "file": "../.github/instructions/copilot-instructions.md" },
-        { "file": "../.github/instructions/project-instructions.md" },
         { "file": "../.github/instructions/commit-instructions.md" },
         { "file": "../.github/instructions/coding-instructions.md" },
+        { "file": "../.github/instructions/go-instructions.md" },
         { "file": "../.github/instructions/security-instructions.md" },
         { "file": "../.github/instructions/doc-instructions.md" },
-        { "file": "../.github/instructions/go-instructions.md" },
+        { "file": "../.github/instructions/project-instructions.md" }
     ],
     "github.copilot.chat.testGeneration.instructions": [
         { "file": "../.github/instructions/test-instructions.md" },
         { "file": "../.github/instructions/test-fuzz-instructions.md" },
-        { "file": "../.github/instructions/test-bench-instructions.md" },
+        { "file": "../.github/instructions/test-bench-instructions.md" }
     ]
 }
