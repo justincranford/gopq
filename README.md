@@ -33,6 +33,7 @@ git clone https://github.com/your-org/gopq.git
 
 #### ML-DSA (ML-DSA-87) Example
 
+```
 import "gopq/pq"
 
 // Generate a random ML-DSA keypair
