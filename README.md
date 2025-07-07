@@ -157,5 +157,6 @@ When a human contributor interacts with Agentic AI:
 - Using Copilot Chat, the AI agent follows all instructions in a general context (no specific persona).
 - Using a Persona Prompt, the AI agent follows all instructions, but adopts the perspective and goals of the selected persona.
 
-AI is most effective when given specific context. Persona prompts provide tailored guidance for different roles (e.g., Dev, QA, PM), ensuring the AI agent responds with more appropriate focus and expertise.
+AI is most effective when given specific context.
 
+Using Copilot Chat is good, but sometimes you get mixed results. When that happens, switch to a persona (e.g., Dev, QA, PM) to get more focused results and expertise.
