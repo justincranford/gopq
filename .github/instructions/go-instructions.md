@@ -52,13 +52,18 @@ These instructions consolidate all Go-specific standards and best practices for 
 
 ---
 
+
+
 ## Commit Workflow
 
 - **ALWAYS** run `golangci-lint run --fix` and `gofumpt -l -w .` before every commit, and fix all warnings and errors before continuing with the commit, as part of a single chained command. Use `golangci-lint run --fix` to automatically fix all fixable lint issues.
-- The canonical commit command is:
-  ```
+- **ALWAYS use PowerShell syntax for all chained commands and commit instructions on Windows.** Do NOT use Bash-style `&&` or `;` separators. Use PowerShell's `;` separator for chaining commands.
+- The canonical commit command for Windows PowerShell is:
+  ```powershell
   golangci-lint run --fix; gofumpt -l -w .; git add -A; git commit -m "..."; git push
   ```
+- If you are writing documentation, instructions, or code comments, always show the PowerShell version of any chained or multi-step command for Windows users. Only use Bash-style commands if the user explicitly requests Bash or is on a Unix-like system.
+- **For all commit and workflow command chaining, always follow the generic rules in `commit-instructions.md` for separator and shell syntax. Only the Go-specific lint, format, and test commands should be defined here.**
 
 ---
 
