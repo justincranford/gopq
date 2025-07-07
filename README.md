@@ -135,7 +135,7 @@ Instruction files ensure that all human contributors and AI personas follow the 
 - [test-instructions.md](.github/instructions/test-instructions.md)
 - [project-instructions.md](.github/instructions/project-instructions.md)
 
- Design intent is for all instruction files to be generic, so they are potentially reusable for other R&D projects. The exception is project-instructions, which is project-specific.
+ Design intent is for all instruction files to be generic, so they are potentially reusable for my R&D projects. The exception is project-instructions, which is project-specific.
 
 ### Persona Prompt Files
 
