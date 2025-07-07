@@ -153,7 +153,7 @@ The main configuration file is `settings.json`. It lists the instruction and pro
 
 ### General R&D Instruction Files
 
-All instruction files are in the [.github/instructions/](.github/instructions/) directory. They ensure all human contributors and AI personas follow the same standards.
+All instruction files are in the [.github/instructions/](.github/instructions/) directory.
 
 AI
 
@@ -174,10 +174,11 @@ Testing
 - [test-fuzz-instructions.md](.github/instructions/test-fuzz-instructions.md)
 - [test-bench-instructions.md](.github/instructions/test-bench-instructions.md)
 
-Design intent is for all instruction files to be generic and reusable for other R&D projects, except for project-instructions, which is project-specific.
+Instruction files ensure that all human contributors and AI personas follow the same standards.
+
+Design intent for the instruction files is to be generic and reusable for my other R&D projects. The main exception is project-instructions file, which contains project-specific context.
 
 ### Persona Prompt Files
-
 
 All prompt files are in the [.github/prompts/](.github/prompts/) directory.
 
