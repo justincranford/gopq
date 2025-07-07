@@ -30,11 +30,6 @@ git clone https://github.com/justincranford/gopq.git
 
 
 ### Usage
-detDSAKey, err := pq.DeriveMLDSAKeyPair(&seed)
-signature, err := pq.MLDSASign(mldsaKey.PrivateKey, message)
-pub, _ := pq.UnmarshalPublicKey(pubBytes)
-priv, _ := pq.UnmarshalPrivateKey(privBytes)
-detKey, err := pq.GenerateDeterministicMLKEMKeyPair(seed)
 
 <details>
 <summary><strong>ML-DSA (ML-DSA-87) Example</strong></summary>
