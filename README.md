@@ -7,7 +7,7 @@ gopq is an educational project to demonstrate:
 1. Post-quantum Cryptography (PQC); signing and encryption.
 2. Agentic AI for rapid development; vscode + Copilot instructions and prompts.
 
-## Overview
+## Post-quantum Cryptography
 
 gopq provides reusable Go functions for PQC algorithms; ML-DSA for signing, and ML-KEM for encryption.
 
@@ -15,7 +15,7 @@ gopq provides reusable Go functions for PQC algorithms; ML-DSA for signing, and 
 
 The implementation uses the [Cloudflare CIRCL](https://github.com/cloudflare/circl) library.
 
-## Installation
+### Installation
 
 ```
 go get github.com/cloudflare/circl@latest
@@ -28,9 +28,9 @@ git clone https://github.com/your-org/gopq.git
 ```
 
 
-## Usage
+### Usage
 
-### ML-DSA (ML-DSA-87) Example
+#### ML-DSA (ML-DSA-87) Example
 
 ```go
 import "github.com/cloudflare/circl/sign/mldsa/mldsa87"
@@ -63,7 +63,7 @@ if !valid {
 }
 ```
 
-### ML-KEM (Kyber KEM) Example
+#### ML-KEM (Kyber KEM) Example
 
 ```go
 import "github.com/cloudflare/circl/kem/kyber/kyber1024"
@@ -96,7 +96,7 @@ encSeed := make([]byte, kyber1024.Scheme().EncapsulationSeedSize())
 ct, shared, err := pq.MLKEMEncapsulateDeterministic(detKey.PublicKey, encSeed)
 ```
 
-## Testing
+### Testing
 
 Run all tests and benchmarks:
 
@@ -104,13 +104,13 @@ Run all tests and benchmarks:
 go test -v -bench=. ./pq
 ```
 
-## Security Notes
+### Security Notes
 
 - This library is for demonstration and educational use only.
 - For production, use vetted libraries and follow NIST and FIPS 140-3 guidance.
 - Never log or expose private keys or shared secrets in production.
 
-## References
+### References
 
 - [Cloudflare CIRCL](https://github.com/cloudflare/circl)
 - [NIST PQC Standardization](https://csrc.nist.gov/projects/post-quantum-cryptography)
@@ -134,7 +134,7 @@ This project was developed using an Agentic AI workflow, leveraging VS Code, Git
 
 These files ensure that all contributors and AI tools follow the same standards, enabling rapid, consistent, and high-quality development.
 
-## R&D Persona Prompts
+### R&D Persona Prompts
 
 For role-specific guidance and collaboration, see the following persona prompts in `.github/prompts/`:
 
