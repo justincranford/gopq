@@ -118,21 +118,24 @@ go test -v -bench=. ./pq
 
 ## Agentic AI Usage in This Project
 
+This project was developed using an Agentic AI workflow, leveraging VS Code, GitHub Copilot, and custom instruction and prompt files.
 
-This project was developed using an Agentic AI workflow, leveraging VS Code, GitHub Copilot, and custom instruction and prompt files to enforce standards, automate code generation, and maintain project quality.
+The main configuration file is `.vscode/settings.json`. It uses relative paths to reference all instruction and prompt files required by Copilot and other AI tools for this project. All instruction and prompt files must be listed in `.vscode/settings.json` to ensure they are recognized and enforced.
 
-#### Relationship of settings.json, instructions, and prompts
+Instruction files define standards and rules that apply to both human contributors and AI agents.
 
-The `.vscode/settings.json` file controls how Copilot and other AI tools use the instruction and prompt files. All instruction and prompt files must be referenced in settings.json to ensure AI tools follow the correct standards and workflows. Prompts are always generic and must defer to the instruction files for all requirements and standards. When updating or adding instruction or prompt files, always update settings.json and validate the references.
+When a human contributor interacts with Agentic AI:
+- Using Copilot Chat, the AI agent follows all instructions in a general context (no specific persona).
+- Using a Persona Prompt, the AI agent follows all instructions but adopts the perspective and goals of the selected persona.
 
-**Key files and directories:**
+AI is most effective when given specific context. Persona prompts provide tailored guidance for different roles (e.g., PM, Dev, QA), ensuring the AI agent responds with the appropriate focus and expertise.
 
-- [settings.json](.vscode/settings.json)
-- [.github/instructions/](.github/instructions/)
-- [.github/prompts/](.github/prompts/)
+### General R&D Instruction Files
+
+These files ensure that all human contributors and AI personas follow the same standards.
 
 
-### Key Agentic AI Artifacts
+All of these are instruction files in the [.github/instructions/](.github/instructions/) directory. Design intent is for all instruction files to be generic and reusable for other R&D projects, expect project-instructions which is project-specific.
 
 - [copilot-instructions.md](.github/instructions/copilot-instructions.md)
 - [commit-instructions.md](.github/instructions/commit-instructions.md)
@@ -142,15 +145,11 @@ The `.vscode/settings.json` file controls how Copilot and other AI tools use the
 - [doc-instructions.md](.github/instructions/doc-instructions.md)
 - [test-instructions.md](.github/instructions/test-instructions.md)
 - [project-instructions.md](.github/instructions/project-instructions.md)
-- [prompts](.github/prompts/)
 
 
-These files ensure that all contributors and AI tools follow the same standards, enabling rapid, consistent, and high-quality development.
+### Persona Prompt Files
 
-
-### R&D Persona Prompts
-
-For role-specific guidance and collaboration, see the following persona prompt files:
+All of these files are persona prompts in the [.github/prompts/](.github/prompts/) directory.
 
 - [prompt-pm.md](.github/prompts/prompt-pm.md)
 - [prompt-dev.md](.github/prompts/prompt-dev.md)
