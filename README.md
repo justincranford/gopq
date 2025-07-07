@@ -153,10 +153,7 @@ The main configuration file is `settings.json`. It lists the instruction and pro
 
 ### General R&D Instruction Files
 
-
-Instruction files ensure that all human contributors and AI personas follow the same standards.
-
-All instruction files are in the [.github/instructions/](.github/instructions/) directory:
+All instruction files are in the [.github/instructions/](.github/instructions/) directory. They ensure all human contributors and AI personas follow the same standards.
 
 AI
 
@@ -182,7 +179,7 @@ Design intent is for all instruction files to be generic and reusable for other 
 ### Persona Prompt Files
 
 
-All of these files are persona prompts in the [.github/prompts/](.github/prompts/) directory:
+All prompt files are in the [.github/prompts/](.github/prompts/) directory.
 
 - [prompt-dev.md](.github/prompts/prompt-dev.md)
 - [prompt-qa.md](.github/prompts/prompt-qa.md)
