@@ -33,8 +33,6 @@ git clone https://github.com/your-org/gopq.git
 
 #### ML-DSA (ML-DSA-87) Example
 
-```go
-import "github.com/cloudflare/circl/sign/mldsa/mldsa87"
 import "gopq/pq"
 
 // Generate a random ML-DSA keypair
@@ -44,7 +42,7 @@ if err != nil {
 }
 
 // Deterministic keypair (from seed)
-var seed [mldsa87.SeedSize]byte
+var seed [48]byte // 48 is the seed size for ML-DSA-87
 detDSAKey, err := pq.DeriveMLDSAKeyPair(&seed)
 
 // Sign a message
