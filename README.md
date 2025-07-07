@@ -187,16 +187,16 @@ All prompt files are in the [.github/prompts/](.github/prompts/) directory.
 - [prompt-doc.md](.github/prompts/prompt-doc.md)
 - [prompt-marketing.md](.github/prompts/prompt-marketing.md)
 
-Prompt files are personas for AI Agents to utilize more focused context for tasks.
+Prompt files are personas for AI Agents to adopt more focused context when performing tasks. See Additional Details.
 
 ### Additional Details
 
 Instruction files define standards and rules that apply to both human contributors and AI agents.
 
 When a human contributor interacts with Agentic AI:
-- Using Copilot Chat, the AI agent follows all instructions in a general context (no specific persona).
-- Using a Persona Prompt, the AI agent follows all instructions, but adopts the perspective and goals of the selected persona.
+- Using **Copilot Chat**, the AI agent follows all instructions in a general context (no specific persona).
+- Using a **Persona Prompt**, the AI agent follows all instructions, but adopts the perspective and goals of the selected persona.
 
-AI is most effective when given specific context.
+AI effectiveness can increase when given more specific and narrow context.
 
-Using Copilot Chat is good, but sometimes you get mixed results. When that happens, switch to a persona (e.g., Dev, QA, PM) to get more focused results and expertise.
+For example, you can get good but mixed results using Copilot Chat. Switching to a persona (e.g., Dev, QA, PM) can narrow the context, and help AI give the better expertise and results you were expecting.
