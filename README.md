@@ -4,12 +4,12 @@
 **Educational Project: Post-Quantum Safe Utility Cryptography created with Agentic AI**
 
 gopq is an educational project to demonstrate:
-1. Post-quantum (PQ) Safe Cryptography; ML-DSA for signing, and ML-PEM for encryption.
+1. Post-quantum Cryptography (PQC); signing and encryption.
 2. Agentic AI for rapid development; vscode + Copilot instructions and prompts.
 
 ## Overview
 
-gopq provides reusable Go functions for NIST PQC algorithms, Kyber KEM and ML-DSA.
+gopq provides reusable Go functions for PQC algorithms; ML-DSA for signing, and ML-KEM for encryption.
 
 > **Note:** gopq is for demonstration and educational purposes only. Do not use in production.
 
