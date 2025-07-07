@@ -3,9 +3,10 @@
 
 **Educational Project: Post-Quantum Safe Utility Cryptography created with Agentic AI**
 
+
 gopq is an educational project to demonstrate:
-1. Post-quantum Cryptography (PQC); signing and encryption.
-2. Agentic AI for rapid development; vscode + Copilot instructions and prompts.
+- [Post-quantum Cryptography](#post-quantum-cryptography)
+- [Agentic AI Usage in This Project](#agentic-ai-usage-in-this-project)
 
 ## Post-quantum Cryptography
 
