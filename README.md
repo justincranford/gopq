@@ -199,4 +199,4 @@ When a human contributor interacts with Agentic AI:
 
 AI effectiveness can increase when given more specific and narrow context.
 
-For example, you can get good but mixed results using Copilot Chat. Switching to a persona (e.g., Dev, QA, PM) can narrow the context, and help AI give the better expertise and results you were expecting.
+For example, you can get good but mixed results using Copilot Chat. Switching to a persona (e.g., Dev, QA, PM) can narrow the context, and help AI give you the better expertise and results you were expecting.
