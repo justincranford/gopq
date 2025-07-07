@@ -118,30 +118,44 @@ go test -v -bench=. ./pq
 
 ## Agentic AI Usage in This Project
 
+
 This project was developed using an Agentic AI workflow, leveraging VS Code, GitHub Copilot, and custom instruction and prompt files to enforce standards, automate code generation, and maintain project quality.
+
+#### Relationship of settings.json, instructions, and prompts
+
+The `.vscode/settings.json` file controls how Copilot and other AI tools use the instruction and prompt files. All instruction and prompt files must be referenced in settings.json to ensure AI tools follow the correct standards and workflows. Prompts are always generic and must defer to the instruction files for all requirements and standards. When updating or adding instruction or prompt files, always update settings.json and validate the references.
+
+**Key files and directories:**
+
+- [settings.json](.vscode/settings.json)
+- [.github/instructions/](.github/instructions/)
+- [.github/prompts/](.github/prompts/)
+
 
 ### Key Agentic AI Artifacts
 
-- [Copilot/AI Instructions](.github/instructions/copilot-instructions.md): Defines how Copilot and other AI tools must operate in this project.
-- [Commit Workflow Instructions](.github/instructions/commit-instructions.md): Enforces commit and workflow rules, including PowerShell command usage.
-- [Coding Standards](.github/instructions/coding-instructions.md): Project-wide code quality and style requirements.
-- [Go Language Standards](.github/instructions/go-instructions.md): All Go-specific requirements and best practices.
-- [Security Standards](.github/instructions/security-instructions.md): Security and cryptography requirements.
-- [Documentation Standards](.github/instructions/doc-instructions.md): Documentation and GoDoc requirements.
-- [Test Instructions](.github/instructions/test-instructions.md): Unit, fuzz, and benchmark test requirements.
-- [Project Instructions](.github/instructions/project-instructions.md): Project-specific rules and meta-guidance.
-- [Persona Prompts](.github/prompts/): Role-specific prompts for developers, QA, security, product, and more.
+- [copilot-instructions.md](.github/instructions/copilot-instructions.md)
+- [commit-instructions.md](.github/instructions/commit-instructions.md)
+- [coding-instructions.md](.github/instructions/coding-instructions.md)
+- [go-instructions.md](.github/instructions/go-instructions.md)
+- [security-instructions.md](.github/instructions/security-instructions.md)
+- [doc-instructions.md](.github/instructions/doc-instructions.md)
+- [test-instructions.md](.github/instructions/test-instructions.md)
+- [project-instructions.md](.github/instructions/project-instructions.md)
+- [prompts](.github/prompts/)
+
 
 These files ensure that all contributors and AI tools follow the same standards, enabling rapid, consistent, and high-quality development.
 
+
 ### R&D Persona Prompts
 
-For role-specific guidance and collaboration, see the following persona prompts in `.github/prompts/`:
+For role-specific guidance and collaboration, see the following persona prompt files:
 
-- [Product Manager](.github/prompts/prompt-pm.md)
-- [Senior Staff Developer](.github/prompts/prompt-dev.md)
-- [QA Automation Developer](.github/prompts/prompt-qa.md)
-- [Documentation Developer](.github/prompts/prompt-doc.md)
-- [Release Manager](.github/prompts/prompt-release.md)
-- [Marketing VP](.github/prompts/prompt-marketing.md)
-- [Application Security Analyst](.github/prompts/prompt-sec.md)
+- [prompt-pm.md](.github/prompts/prompt-pm.md)
+- [prompt-dev.md](.github/prompts/prompt-dev.md)
+- [prompt-qa.md](.github/prompts/prompt-qa.md)
+- [prompt-doc.md](.github/prompts/prompt-doc.md)
+- [prompt-release.md](.github/prompts/prompt-release.md)
+- [prompt-marketing.md](.github/prompts/prompt-marketing.md)
+- [prompt-sec.md](.github/prompts/prompt-sec.md)
