@@ -5,7 +5,7 @@ These instructions provide general, reusable coding standards for all Go project
 ## Requirements
 - Use clear, descriptive variable and function names throughout all code.
 - Provide usage examples in documentation and tests.
-- Reference official documentation and specifications (e.g., NIST, FIPS) in comments where appropriate.
+- Reference official documentation and specifications (e.g., NIST, FIPS 140-3) in comments where appropriate.
 - Ensure all exported functions are covered by positive and negative tests, fuzz tests, and benchmarks.
 - For all Go-specific requirements and best practices, see `go.instructions.md`.
 

@@ -107,7 +107,7 @@ go test -v -bench=. ./pq
 ## Security Notes
 
 - This library is for demonstration and educational use only.
-- For production, use vetted libraries and follow NIST/FIPS guidance.
+- For production, use vetted libraries and follow NIST and FIPS 140-3 guidance.
 - Never log or expose private keys or shared secrets in production.
 - **Limitations:**
   - The Kyber KEM decapsulation (via CIRCL) may not always return an error for tampered ciphertext or wrong private key, depending on the underlying library's behavior. Always validate shared secrets and handle errors securely in production.

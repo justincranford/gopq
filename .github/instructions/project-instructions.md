@@ -3,8 +3,8 @@
 These instructions define requirements and standards unique to the gopq project.
 
 ## Requirements
-- Implement and demonstrate NIST/FIPS-approved post-quantum cryptographic algorithms (ML-KEM, ML-DSA, Kyber, Dilithium, etc.).
-- Reference official NIST/FIPS documentation in code and documentation.
+- Implement and demonstrate NIST- and FIPS 140-3-approved post-quantum cryptographic algorithms (ML-KEM, ML-DSA, Kyber, Dilithium, etc.).
+- Reference official NIST and FIPS 140-3 documentation in code and documentation.
 - Provide comprehensive test coverage, including positive, negative, fuzz, and benchmark tests for all exported functions.
 - Maintain a `README.md` with high-level usage, security notes, and references.
 

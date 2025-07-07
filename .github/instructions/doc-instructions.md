@@ -7,7 +7,7 @@ These instructions define standards for writing and maintaining documentation in
 - Provide usage examples in GoDoc and in test files.
 - Keep the `README.md` up to date with high-level usage, security notes, and references.
 - Document any limitations, known issues, or deviations from standards.
-- Reference official specifications (e.g., NIST, FIPS) where appropriate.
+- Reference official specifications (e.g., NIST, FIPS 140-3) where appropriate.
 
 ## Best Practices
 - Use clear, concise language and avoid jargon.
