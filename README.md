@@ -154,7 +154,9 @@ The main configuration file is `settings.json`. It lists the instruction and pro
 ### General R&D Instruction Files
 
 
-Instruction files ensure that all human contributors and AI personas follow the same standards. They are in the [.github/instructions/](.github/instructions/) directory:
+Instruction files ensure that all human contributors and AI personas follow the same standards.
+
+All instruction files are in the [.github/instructions/](.github/instructions/) directory:
 
 AI
 
