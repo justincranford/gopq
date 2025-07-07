@@ -30,39 +30,6 @@ git clone https://github.com/your-org/gopq.git
 
 ## Usage
 
-### ML-KEM (Kyber KEM) Example
-
-```go
-import "github.com/cloudflare/circl/kem/kyber/kyber1024"
-import "gopq/pq"
-
-// Generate a random Kyber1024 KEM keypair
-mlkemKey, err := pq.GenerateMLKEMKeyPair()
-if err != nil {
-    // handle error
-}
-
-// Serialize and deserialize keys
-pubBytes, _ := pq.MarshalPublicKey(mlkemKey.PublicKey)
-privBytes, _ := pq.MarshalPrivateKey(mlkemKey.PrivateKey)
-pub, _ := pq.UnmarshalPublicKey(pubBytes)
-priv, _ := pq.UnmarshalPrivateKey(privBytes)
-
-// Encapsulate a shared secret
-ciphertext, sharedSecret, err := pq.MLKEMEncapsulate(pub)
-
-// Decapsulate the shared secret
-recoveredSecret, err := pq.MLKEMDecapsulate(priv, ciphertext)
-
-// Deterministic keypair (for KATs)
-seed := make([]byte, kyber1024.Scheme().SeedSize())
-detKey, err := pq.GenerateDeterministicMLKEMKeyPair(seed)
-
-// Deterministic encapsulation (for KATs)
-encSeed := make([]byte, kyber1024.Scheme().EncapsulationSeedSize())
-ct, shared, err := pq.MLKEMEncapsulateDeterministic(detKey.PublicKey, encSeed)
-```
-
 ### ML-DSA (ML-DSA-87) Example
 
 ```go
@@ -94,6 +61,39 @@ if err != nil {
 if !valid {
     // signature invalid
 }
+```
+
+### ML-KEM (Kyber KEM) Example
+
+```go
+import "github.com/cloudflare/circl/kem/kyber/kyber1024"
+import "gopq/pq"
+
+// Generate a random Kyber1024 KEM keypair
+mlkemKey, err := pq.GenerateMLKEMKeyPair()
+if err != nil {
+    // handle error
+}
+
+// Serialize and deserialize keys
+pubBytes, _ := pq.MarshalPublicKey(mlkemKey.PublicKey)
+privBytes, _ := pq.MarshalPrivateKey(mlkemKey.PrivateKey)
+pub, _ := pq.UnmarshalPublicKey(pubBytes)
+priv, _ := pq.UnmarshalPrivateKey(privBytes)
+
+// Encapsulate a shared secret
+ciphertext, sharedSecret, err := pq.MLKEMEncapsulate(pub)
+
+// Decapsulate the shared secret
+recoveredSecret, err := pq.MLKEMDecapsulate(priv, ciphertext)
+
+// Deterministic keypair (for KATs)
+seed := make([]byte, kyber1024.Scheme().SeedSize())
+detKey, err := pq.GenerateDeterministicMLKEMKeyPair(seed)
+
+// Deterministic encapsulation (for KATs)
+encSeed := make([]byte, kyber1024.Scheme().EncapsulationSeedSize())
+ct, shared, err := pq.MLKEMEncapsulateDeterministic(detKey.PublicKey, encSeed)
 ```
 
 ## Testing
