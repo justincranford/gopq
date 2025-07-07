@@ -25,7 +25,7 @@ go get github.com/cloudflare/circl@latest
 Clone or vendor this repository as needed:
 
 ```
-git clone https://github.com/your-org/gopq.git
+git clone https://github.com/justincranford/gopq.git
 ```
 
 
