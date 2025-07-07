@@ -105,7 +105,7 @@ Run all tests and benchmarks:
 go test -v -bench=. ./pq
 ```
 
-### Generating and Viewing GoDoc Documentation
+### Documentation
 
 To generate and view GoDoc documentation locally:
 
