@@ -16,7 +16,10 @@ gopq provides reusable Go functions for PQC algorithms; ML-DSA for signing, and 
 
 The implementation uses the [Cloudflare CIRCL](https://github.com/cloudflare/circl) library.
 
-### Installation
+### Usage
+
+<details>
+<summary><strong>Installation</strong></summary>
 
 ```
 go get github.com/cloudflare/circl@latest
@@ -28,6 +31,7 @@ Clone or vendor this repository as needed:
 git clone https://github.com/justincranford/gopq.git
 ```
 
+</details>
 
 ### Usage
 
@@ -102,8 +106,9 @@ ct, shared, err := pq.MLKEMEncapsulateDeterministic(detKey.PublicKey, encSeed)
 
 </details>
 
-### Testing
 
+<details>
+<summary><strong>Testing</strong></summary>
 
 Run all tests and benchmarks:
 
@@ -111,7 +116,11 @@ Run all tests and benchmarks:
 go test -v -bench=. ./pq
 ```
 
-### Documentation
+</details>
+
+
+<details>
+<summary><strong>Documentation</strong></summary>
 
 To generate and view GoDoc documentation locally:
 
@@ -128,17 +137,27 @@ To generate and view GoDoc documentation locally:
    start http://localhost:6060/pkg/gopq/pq/
    ```
 
-### Security Notes
+</details>
+
+
+<details>
+<summary><strong>Security Notes</strong></summary>
 
 - This library is for demonstration and educational use only.
 - For production, use vetted libraries and follow NIST and FIPS 140-3 guidance.
 - Never log or expose private keys or shared secrets in production.
 
-### References
+</details>
+
+
+<details>
+<summary><strong>References</strong></summary>
 
 - [Cloudflare CIRCL](https://github.com/cloudflare/circl)
 - [NIST PQC Standardization](https://csrc.nist.gov/projects/post-quantum-cryptography)
 - [Kyber Specification](https://pq-crystals.org/kyber/)
+
+</details>
 
 ## Agentic AI Usage in This Project
 
@@ -149,7 +168,9 @@ This project was developed using an Agentic AI workflow, leveraging:
 
 The main configuration file is [.vscode/settings.json](.vscode/settings.json). It specifies the instruction and prompt files to use.
 
-### Instruction Files
+
+<details>
+<summary><strong>Instruction Files</strong></summary>
 
 All instruction files are in the [.github/instructions/](.github/instructions/) directory.
 
@@ -175,6 +196,8 @@ Testing
 Instruction files ensure that all human contributors and AI personas follow the same standards.
 
 Design intent for the instruction files is to be generic and reusable for my other R&D projects. The main exception is project-instructions file, which contains project-specific context.
+
+</details>
 
 ### Prompt Files
 
