@@ -30,10 +30,16 @@ git clone https://github.com/justincranford/gopq.git
 
 
 ### Usage
+detDSAKey, err := pq.DeriveMLDSAKeyPair(&seed)
+signature, err := pq.MLDSASign(mldsaKey.PrivateKey, message)
+pub, _ := pq.UnmarshalPublicKey(pubBytes)
+priv, _ := pq.UnmarshalPrivateKey(privBytes)
+detKey, err := pq.GenerateDeterministicMLKEMKeyPair(seed)
 
-#### ML-DSA (ML-DSA-87) Example
+<details>
+<summary><strong>ML-DSA (ML-DSA-87) Example</strong></summary>
 
-```
+```go
 import "gopq/pq"
 
 // Generate a random ML-DSA keypair
@@ -63,7 +69,10 @@ if !valid {
 }
 ```
 
-#### ML-KEM (Kyber KEM) Example
+</details>
+
+<details>
+<summary><strong>ML-KEM (Kyber KEM) Example</strong></summary>
 
 ```go
 import "github.com/cloudflare/circl/kem/kyber/kyber1024"
@@ -95,6 +104,8 @@ detKey, err := pq.GenerateDeterministicMLKEMKeyPair(seed)
 encSeed := make([]byte, kyber1024.Scheme().EncapsulationSeedSize())
 ct, shared, err := pq.MLKEMEncapsulateDeterministic(detKey.PublicKey, encSeed)
 ```
+
+</details>
 
 ### Testing
 
