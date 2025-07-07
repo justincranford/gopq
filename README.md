@@ -117,7 +117,10 @@ To generate and view GoDoc documentation locally:
    ```
    godoc -http=:6060
    ```
-3. Open your browser and go to [http://localhost:6060/pkg/](http://localhost:6060/pkg/) to browse the documentation for this project and its packages.
+3. Open the documentation in your browser.
+   ```
+   start http://localhost:6060/pkg/gopq/pq/
+   ```
 
 ### Security Notes
 
