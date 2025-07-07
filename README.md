@@ -118,24 +118,13 @@ go test -v -bench=. ./pq
 
 ## Agentic AI Usage in This Project
 
-This project was developed using an Agentic AI workflow, leveraging VS Code, GitHub Copilot, and custom instruction and prompt files.
+This project was developed using an Agentic AI workflow, leveraging VS Code, GitHub Copilot, and custom instruction and prompt files. The main configuration file is `settings.json`. It lists the instruction and prompt files to be used.
 
-The main configuration file is `.vscode/settings.json`. It uses relative paths to reference all instruction and prompt files required by Copilot and other AI tools for this project. All instruction and prompt files must be listed in `.vscode/settings.json` to ensure they are recognized and enforced.
-
-Instruction files define standards and rules that apply to both human contributors and AI agents.
-
-When a human contributor interacts with Agentic AI:
-- Using Copilot Chat, the AI agent follows all instructions in a general context (no specific persona).
-- Using a Persona Prompt, the AI agent follows all instructions but adopts the perspective and goals of the selected persona.
-
-AI is most effective when given specific context. Persona prompts provide tailored guidance for different roles (e.g., PM, Dev, QA), ensuring the AI agent responds with the appropriate focus and expertise.
+- [.vscode/settings.json](.vscode/settings.json)
 
 ### General R&D Instruction Files
 
-These files ensure that all human contributors and AI personas follow the same standards.
-
-
-All of these are instruction files in the [.github/instructions/](.github/instructions/) directory. Design intent is for all instruction files to be generic and reusable for other R&D projects, expect project-instructions which is project-specific.
+Instruction files ensure that all human contributors and AI personas follow the same standards. They are in the [.github/instructions/](.github/instructions/) directory.
 
 - [copilot-instructions.md](.github/instructions/copilot-instructions.md)
 - [commit-instructions.md](.github/instructions/commit-instructions.md)
@@ -146,6 +135,7 @@ All of these are instruction files in the [.github/instructions/](.github/instru
 - [test-instructions.md](.github/instructions/test-instructions.md)
 - [project-instructions.md](.github/instructions/project-instructions.md)
 
+ Design intent is for all instruction files to be generic, so they are potentially reusable for other R&D projects. The exception is project-instructions, which is project-specific.
 
 ### Persona Prompt Files
 
@@ -158,3 +148,14 @@ All of these files are persona prompts in the [.github/prompts/](.github/prompts
 - [prompt-release.md](.github/prompts/prompt-release.md)
 - [prompt-marketing.md](.github/prompts/prompt-marketing.md)
 - [prompt-sec.md](.github/prompts/prompt-sec.md)
+
+### Additional Details
+
+Instruction files define standards and rules that apply to both human contributors and AI agents.
+
+When a human contributor interacts with Agentic AI:
+- Using Copilot Chat, the AI agent follows all instructions in a general context (no specific persona).
+- Using a Persona Prompt, the AI agent follows all instructions, but adopts the perspective and goals of the selected persona.
+
+AI is most effective when given specific context. Persona prompts provide tailored guidance for different roles (e.g., Dev, QA, PM), ensuring the AI agent responds with more appropriate focus and expertise.
+
