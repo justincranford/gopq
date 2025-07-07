@@ -149,7 +149,7 @@ This project was developed using an Agentic AI workflow, leveraging:
 
 The main configuration file is [.vscode/settings.json](.vscode/settings.json). It specifies the instruction and prompt files to use.
 
-### General R&D Instruction Files
+### Instruction Files
 
 All instruction files are in the [.github/instructions/](.github/instructions/) directory.
 
@@ -176,7 +176,7 @@ Instruction files ensure that all human contributors and AI personas follow the 
 
 Design intent for the instruction files is to be generic and reusable for my other R&D projects. The main exception is project-instructions file, which contains project-specific context.
 
-### Persona Prompt Files
+### Prompt Files
 
 All prompt files are in the [.github/prompts/](.github/prompts/) directory.
 
@@ -186,6 +186,8 @@ All prompt files are in the [.github/prompts/](.github/prompts/) directory.
 - [prompt-sec.md](.github/prompts/prompt-sec.md)
 - [prompt-doc.md](.github/prompts/prompt-doc.md)
 - [prompt-marketing.md](.github/prompts/prompt-marketing.md)
+
+Prompt files are personas for AI Agents to utilize more focused context for tasks.
 
 ### Additional Details
 
