@@ -98,11 +98,26 @@ ct, shared, err := pq.MLKEMEncapsulateDeterministic(detKey.PublicKey, encSeed)
 
 ### Testing
 
+
 Run all tests and benchmarks:
 
 ```
 go test -v -bench=. ./pq
 ```
+
+### Generating and Viewing GoDoc Documentation
+
+To generate and view GoDoc documentation locally:
+
+1. Install the godoc tool (if not already installed):
+   ```
+   go install golang.org/x/tools/cmd/godoc@latest
+   ```
+2. Start the documentation server:
+   ```
+   godoc -http=:6060
+   ```
+3. Open your browser and go to [http://localhost:6060/pkg/](http://localhost:6060/pkg/) to browse the documentation for this project and its packages.
 
 ### Security Notes
 
