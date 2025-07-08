@@ -14,7 +14,8 @@
       "description": "Local HTTP echo server (Docker).",
       "image": "ealen/echo-server:latest",
       "ports": ["8081:80"],
-      "restart": "no"
+      "restart": "no",
+      "rm": true
     },
     {
       "id": "duckduckgo-server",
@@ -23,7 +24,19 @@
       "description": "DuckDuckGo MCP server for search.",
       "image": "mcp/duckduckgo",
       "ports": ["8084:8080"],
-      "restart": "no"
+      "restart": "no",
+      "rm": true
+    },
+    {
+      "id": "git-server",
+      "type": "docker",
+      "label": "Git MCP Server",
+      "description": "Git MCP server for repo operations (HTTP API on 8080).",
+      "image": "mcp/git",
+      "ports": ["8085:8080"],
+      "restart": "no",
+      "rm": true,
+      "protocol": "http"
     }
   ]
 }
