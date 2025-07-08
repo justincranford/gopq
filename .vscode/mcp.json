@@ -43,7 +43,8 @@
           "source": "C:/Dev/Project/gopq",
           "target": "/workspace"
         }
-      ]
+      ],
+      "args": ["--repository", "/workspace", "--verbose"]
     }
   ]
 }
