@@ -42,11 +42,11 @@
       "mounts": [
         {
           "type": "bind",
-          "source": "C:\\Dev\\Project\\gopq\\",
-          "target": "/workspace"
+          "source": "C:/Dev/Projects/gopq/",
+          "target": "/workspace/"
         }
       ],
-      "args": ["--repository", "/workspace", "--verbose"],
+      "args": ["--repository", "/workspace/", "--verbose"],
       "env": {
         "GIT_USERNAME": "justincranford",
         "GIT_EMAIL": "justincranford@hotmail.com"
