@@ -15,7 +15,8 @@
       "image": "ealen/echo-server:latest",
       "ports": ["8081:80"],
       "restart": "no",
-      "rm": true
+      "rm": true,
+      "protocol": "http"
     },
     {
       "id": "duckduckgo-server",
@@ -25,7 +26,8 @@
       "image": "mcp/duckduckgo",
       "ports": ["8084:8080"],
       "restart": "no",
-      "rm": true
+      "rm": true,
+      "protocol": "http"
     },
     {
       "id": "git-server",
