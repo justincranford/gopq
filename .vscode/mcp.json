@@ -1,0 +1,29 @@
+{
+  "servers": [
+    {
+      "id": "microsoft-docs",
+      "type": "http",
+      "label": "Microsoft Docs MCP Server",
+      "description": "Microsoft Docs/Learn MCP server.",
+      "url": "https://learn.microsoft.com/api/mcp"
+    },
+    {
+      "id": "echo-server",
+      "type": "docker",
+      "label": "Echo MCP Server",
+      "description": "Local HTTP echo server (Docker).",
+      "image": "ealen/echo-server:latest",
+      "ports": ["8081:80"],
+      "restart": "no"
+    },
+    {
+      "id": "duckduckgo-server",
+      "type": "docker",
+      "label": "DuckDuckGo MCP Server",
+      "description": "DuckDuckGo MCP server for search.",
+      "image": "mcp/duckduckgo",
+      "ports": ["8084:8080"],
+      "restart": "no"
+    }
+  ]
+}
