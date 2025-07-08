@@ -30,9 +30,9 @@
       "protocol": "http"
     },
     {
-      "id": "git-server",
+      "id": "git-server-nopq",
       "type": "docker",
-      "label": "Git MCP Server",
+      "label": "Git MCP Server nopq",
       "description": "Git MCP server for repo operations (HTTP API on 8080).",
       "image": "mcp/git",
       "ports": ["8085:8080"],
@@ -43,6 +43,29 @@
         {
           "type": "bind",
           "source": "C:/Dev/Projects/gopq/",
+          "target": "/workspace/"
+        }
+      ],
+      "args": ["--repository", "/workspace/", "--verbose"],
+      "env": {
+        "GIT_USERNAME": "justincranford",
+        "GIT_EMAIL": "justincranford@hotmail.com"
+      }
+    },
+    {
+      "id": "git-server-oapi-codegen",
+      "type": "docker",
+      "label": "Git MCP Server oapi-codegen",
+      "description": "Git MCP server for repo operations (HTTP API on 8080).",
+      "image": "mcp/git",
+      "ports": ["8086:8080"],
+      "restart": "no",
+      "rm": true,
+      "protocol": "http",
+      "mounts": [
+        {
+          "type": "bind",
+          "source": "C:/Dev/Projects/oapi-codegen/",
           "target": "/workspace/"
         }
       ],
