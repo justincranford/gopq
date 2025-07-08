@@ -46,6 +46,7 @@ Only include Copilot/AI-specific workflow, meta-instructions, and integration ru
 
 ---
 
+
 ## Windows Command-Line Tool Advice
 
 - On Windows, some command-line tools (such as `curl`, `tar`, `ls`, etc.) may not be available in the default `PATH` or may differ from their Linux/macOS counterparts.
@@ -56,6 +57,9 @@ Only include Copilot/AI-specific workflow, meta-instructions, and integration ru
 - If you encounter issues with missing tools, check both the system `PATH` and the Git Bash installation directory.
 - When running a command-line tool with a path that contains spaces in PowerShell, use the call operator (`&`) before the quoted path. For example:
 
+
   ```powershell
   & "C:\Program Files\Git\mingw64\bin\curl.exe" -s http://localhost:8082/search -H "Content-Type: application/json" -d '{"query":"your query here"}'
   ```
+
+- **Do NOT use `&&` for chaining commands in PowerShell.** Instead, run commands separately or use a semicolon (`;`) to separate them. The `&&` operator is not supported in PowerShell and will cause errors.
