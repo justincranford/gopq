@@ -36,7 +36,14 @@
       "ports": ["8085:8080"],
       "restart": "no",
       "rm": true,
-      "protocol": "http"
+      "protocol": "http",
+      "mounts": [
+        {
+          "type": "bind",
+          "source": "C:/Dev/Project/gopq",
+          "target": "/workspace"
+        }
+      ]
     }
   ]
 }
