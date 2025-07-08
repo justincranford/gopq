@@ -43,3 +43,19 @@ Only include Copilot/AI-specific workflow, meta-instructions, and integration ru
 ---
 
 **Use this file to guide all Copilot/AI code generation in this project.**
+
+---
+
+## Windows Command-Line Tool Advice
+
+- On Windows, some command-line tools (such as `curl`, `tar`, `ls`, etc.) may not be available in the default `PATH` or may differ from their Linux/macOS counterparts.
+- Many open source tools (including `curl.exe`) are bundled with Git for Windows and are available in the Git Bash shell. The default install location is usually `C:\Program Files\Git\mingw64\bin\`.
+- If a tool is not found in PowerShell or Command Prompt, try running `where curl` or searching in the Git Bash installation directory.
+- For consistent results in scripts and automation, prefer using the full path to the tool (e.g., `C:\Program Files\Git\mingw64\bin\curl.exe`) or ensure the Git `mingw64\bin` directory is included in your `PATH`.
+- When using Docker or MCP servers that require command-line tools, verify that the required executables are accessible from the environment where the server or script runs.
+- If you encounter issues with missing tools, check both the system `PATH` and the Git Bash installation directory.
+- When running a command-line tool with a path that contains spaces in PowerShell, use the call operator (`&`) before the quoted path. For example:
+
+  ```powershell
+  & "C:\Program Files\Git\mingw64\bin\curl.exe" -s http://localhost:8082/search -H "Content-Type: application/json" -d '{"query":"your query here"}'
+  ```
