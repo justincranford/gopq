@@ -1,6 +1,6 @@
 {
-    // Enable prompt files for chat integrations
     "chat.promptFiles": true,
+    "chat.mcp.discovery.enabled": true,
 
     "github.copilot.chat.codeGeneration.instructions": [
         { "file": "../.github/instructions/copilot-instructions.md" },
