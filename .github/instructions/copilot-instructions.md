@@ -47,7 +47,26 @@ Only include Copilot/AI-specific workflow, meta-instructions, and integration ru
 ---
 
 
-## Windows Command-Line Tool Advice
+
+## Docker MCP Server Naming Advice
+
+- When adding a Dockerized MCP server, **always use named containers** by including the `--name` flag in the Docker run command or configuration. This ensures easier management, troubleshooting, and cleanup of containers.
+
+  Example:
+  ```json
+  {
+    "command": "docker",
+    "args": [
+      "run",
+      "--name",
+      "my-mcp-server",
+      "-i",
+      "--rm",
+      "mcp/time"
+    ]
+  }
+  ```
+
 
 - On Windows, some command-line tools (such as `curl`, `tar`, `ls`, etc.) may not be available in the default `PATH` or may differ from their Linux/macOS counterparts.
 - Many open source tools (including `curl.exe`) are bundled with Git for Windows and are available in the Git Bash shell. The default install location is usually `C:\Program Files\Git\mingw64\bin\`.

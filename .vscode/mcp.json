@@ -1,79 +1,15 @@
 {
-  "servers": [
-    {
-      "id": "microsoft-docs",
-      "type": "http",
-      "label": "Microsoft Docs MCP Server",
-      "description": "Microsoft Docs/Learn MCP server.",
-      "url": "https://learn.microsoft.com/api/mcp"
-    },
-    {
-      "id": "echo-server",
-      "type": "docker",
-      "label": "Echo MCP Server",
-      "description": "Local HTTP echo server (Docker).",
-      "image": "ealen/echo-server:latest",
-      "ports": ["8081:80"],
-      "restart": "no",
-      "rm": true,
-      "protocol": "http"
-    },
-    {
-      "id": "duckduckgo-server",
-      "type": "docker",
-      "label": "DuckDuckGo MCP Server",
-      "description": "DuckDuckGo MCP server for search.",
-      "image": "mcp/duckduckgo",
-      "ports": ["8084:8080"],
-      "restart": "no",
-      "rm": true,
-      "protocol": "http"
-    },
-    {
-      "id": "git-server-nopq",
-      "type": "docker",
-      "label": "Git MCP Server nopq",
-      "description": "Git MCP server for repo operations (HTTP API on 8080).",
-      "image": "mcp/git",
-      "ports": ["8085:8080"],
-      "restart": "no",
-      "rm": true,
-      "protocol": "http",
-      "mounts": [
-        {
-          "type": "bind",
-          "source": "C:/Dev/Projects/gopq/",
-          "target": "/workspace/"
-        }
-      ],
-      "args": ["--repository", "/workspace/", "--verbose"],
-      "env": {
-        "GIT_USERNAME": "justincranford",
-        "GIT_EMAIL": "justincranford@hotmail.com"
-      }
-    },
-    {
-      "id": "git-server-oapi-codegen",
-      "type": "docker",
-      "label": "Git MCP Server oapi-codegen",
-      "description": "Git MCP server for repo operations (HTTP API on 8080).",
-      "image": "mcp/git",
-      "ports": ["8086:8080"],
-      "restart": "no",
-      "rm": true,
-      "protocol": "http",
-      "mounts": [
-        {
-          "type": "bind",
-          "source": "C:/Dev/Projects/oapi-codegen/",
-          "target": "/workspace/"
-        }
-      ],
-      "args": ["--repository", "/workspace/", "--verbose"],
-      "env": {
-        "GIT_USERNAME": "justincranford",
-        "GIT_EMAIL": "justincranford@hotmail.com"
-      }
+  "servers": {
+    "time": {
+      "command": "docker",
+      "args": [
+        "run",
+        "--name",
+        "mcp-time-server",
+        "-i",
+        "--rm",
+        "mcp/time"
+      ]
     }
-  ]
+  }
 }
