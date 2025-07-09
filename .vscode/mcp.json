@@ -17,7 +17,7 @@
       ]
     },
     "echo": {
-      "type": "stdio",
+      "type": "stdio", // This is a plain HTTP server; it doesn't implement MCP API, so we use stdio.
       "command": "docker",
       "args": [
         "run",
