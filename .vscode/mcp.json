@@ -13,6 +13,19 @@
         "--rm",
         "mcp/time"
       ]
+    },
+    "echo": {
+      "command": "docker",
+      "args": [
+        "run",
+        "--name",
+        "mcp-echo-server",
+        "-p",
+        "8081:80",
+        "-i",
+        "--rm",
+        "ealen/echo-server:latest"
+      ]
     }
   }
 }
