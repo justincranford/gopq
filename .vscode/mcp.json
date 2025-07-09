@@ -29,6 +29,15 @@
         "--rm",
         "ealen/echo-server:latest"
       ]
+    },
+    "duckduckgo": {
+      "command": "docker",
+      "args": [
+        "run",
+        "-i",
+        "--rm",
+        "mcp/duckduckgo"
+      ]
     }
   }
 }
