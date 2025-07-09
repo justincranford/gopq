@@ -1,9 +1,11 @@
 {
   "servers": {
     "microsoft-docs": {
+      "type": "http",
       "url": "https://learn.microsoft.com/api/mcp"
     },
     "time": {
+      "type": "stdio",
       "command": "docker",
       "args": [
         "run",
@@ -15,6 +17,7 @@
       ]
     },
     "echo": {
+      "type": "stdio",
       "command": "docker",
       "args": [
         "run",
