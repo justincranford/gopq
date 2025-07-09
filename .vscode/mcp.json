@@ -34,6 +34,8 @@
       "command": "docker",
       "args": [
         "run",
+        "--name",
+        "mcp-duckduckgo-server",
         "-i",
         "--rm",
         "mcp/duckduckgo"
