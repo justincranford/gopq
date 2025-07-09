@@ -1,5 +1,8 @@
 {
   "servers": {
+    "microsoft-docs": {
+      "url": "https://learn.microsoft.com/api/mcp"
+    },
     "time": {
       "command": "docker",
       "args": [
