@@ -1,5 +1,11 @@
 {
   "servers": {
+    "github": {
+      "url": "https://api.githubcopilot.com/mcp/"
+    },
+    // "atlassian": {
+    //   "url": "https://mcp.atlassian.com/v1/sse"
+    // },
     "microsoft-docs": {
       "type": "http",
       "url": "https://learn.microsoft.com/api/mcp"
@@ -17,7 +23,7 @@
       ]
     },
     "echo": {
-      "type": "stdio", // This is a plain HTTP server; it doesn't implement MCP API, so we use stdio.
+      "type": "stdio",
       "command": "docker",
       "args": [
         "run",
