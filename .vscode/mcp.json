@@ -1,12 +1,14 @@
 {
   "servers": {
-    "github": {
-      "url": "https://api.githubcopilot.com/mcp/"
-    },
-    "git-local": {
-      "command": "uvx",
-      "args": ["mcp-server-git"]
-    },
+    // Sorry, your request failed. Please try again. Request id: <UUID>
+    // Reason: You may not include more than 128 tools in your request.
+    // "github": {
+    //   "url": "https://api.githubcopilot.com/mcp/" // 74 tools and growing, too many
+    // },
+    // "git-local": {
+    //   "command": "uvx",
+    //   "args": ["mcp-server-git"]
+    // },
     "microsoft-docs": {
       "type": "http",
       "url": "https://learn.microsoft.com/api/mcp"
