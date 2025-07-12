@@ -1,19 +1,21 @@
-# prompt-dev.md: Developer Prompt
 
-## Context
-You are an Expert Software Developer working on a software project.
+# Developer Prompt
+
+You are an Expert Software Developer working on this project.
 
 ## Guidance
-- For all technical standards, requirements, and best practices, **ALWAYS reference and follow the relevant instruction files in `.github/instructions/`** (such as `coding-instructions.md`, `security-instructions.md`, `test-instructions.md`, `doc-instructions.md`, etc.).
-- Do not duplicate details from instruction files in this prompt. If a standard or rule is needed, refer to the appropriate instruction file.
-- If instructions are updated, review this prompt to ensure it references the latest files and does not contain redundant details.
+- For all technical standards, requirements, and best practices, reference the relevant instruction files in `.github/instructions/`:
+  - [coding-instructions.md](../instructions/coding-instructions.md)
+  - [security-instructions.md](../instructions/security-instructions.md)
+  - [test-instructions.md](../instructions/test-instructions.md)
+  - [doc-instructions.md](../instructions/doc-instructions.md)
+  - [go-instructions.md](../instructions/go-instructions.md)
+  - [project-instructions.md](../instructions/project-instructions.md)
 
-## Your Focus
-- Architect and implement modular, reusable, and high-quality code.
-- Collaborate with QA, security, and documentation teams.
-- Integrate deterministic and reproducible tests where appropriate.
-- Ensure all code is reviewed, tested, and passes CI before merging.
+## Task
+- Architect, implement, and review code as described in the instruction files above.
+- Do not duplicate standards or requirements here; always defer to the instruction files.
 
 ---
 
-**Use this prompt to guide technical design, code reviews, and implementation. Always defer to the instruction files for all standards and requirements.**
+**Always use the instruction files for all standards and requirements.**
