@@ -4,13 +4,6 @@ import (
 	"testing"
 )
 
-func logTestStartEnd(tb testing.TB) {
-	tb.Logf("START: %s", tb.Name())
-	tb.Cleanup(func() {
-		tb.Logf("END: %s", tb.Name())
-	})
-}
-
 func init() {
 	testing.Init()
 }
@@ -20,16 +13,12 @@ func TestMain(m *testing.M) {
 	m.Run()
 }
 
-// Add logTestStartEnd to every test/fuzz/benchmark function above:
 func init() {
 	// This is a placeholder to ensure the helper is included.
 }
 
-// --- Add logTestStartEnd to each test function ---
-
 // For TestGenerateMLDSAKeyPair:
 func TestGenerateMLDSAKeyPair(t *testing.T) {
-	logTestStartEnd(t)
 	key, err := GenerateMLDSAKeyPair()
 	if err != nil {
 		t.Fatalf("failed to generate ML-DSA key pair: %v", err)
@@ -41,7 +30,6 @@ func TestGenerateMLDSAKeyPair(t *testing.T) {
 
 // For TestMLDSASignAndVerify:
 func TestMLDSASignAndVerify(t *testing.T) {
-	logTestStartEnd(t)
 	key, err := GenerateMLDSAKeyPair()
 	if err != nil {
 		t.Fatalf("failed to generate ML-DSA key pair: %v", err)
@@ -62,7 +50,6 @@ func TestMLDSASignAndVerify(t *testing.T) {
 
 // For TestMLDSASignWithInvalidKey:
 func TestMLDSASignWithInvalidKey(t *testing.T) {
-	logTestStartEnd(t)
 	_, err := MLDSASign([]byte{}, []byte("msg"))
 	if err == nil {
 		t.Error("expected error for empty private key")
@@ -71,7 +58,6 @@ func TestMLDSASignWithInvalidKey(t *testing.T) {
 
 // For TestMLDSAVerifyWithInvalidKey:
 func TestMLDSAVerifyWithInvalidKey(t *testing.T) {
-	logTestStartEnd(t)
 	key, err := GenerateMLDSAKeyPair()
 	if err != nil {
 		t.Fatalf("failed to generate ML-DSA key pair: %v", err)
@@ -92,7 +78,6 @@ func TestMLDSAVerifyWithInvalidKey(t *testing.T) {
 }
 
 func TestMLDSAVerifyWithTamperedSignature(t *testing.T) {
-	logTestStartEnd(t)
 	key, err := GenerateMLDSAKeyPair()
 	if err != nil {
 		t.Fatalf("failed to generate ML-DSA key pair: %v", err)

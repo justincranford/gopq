@@ -3,7 +3,6 @@ package pq
 import "testing"
 
 func BenchmarkMLDSASign(b *testing.B) {
-	logTestStartEnd(b)
 	key, err := GenerateMLDSAKeyPair()
 	if err != nil {
 		b.Fatalf("failed to generate ML-DSA key pair: %v", err)
@@ -19,7 +18,6 @@ func BenchmarkMLDSASign(b *testing.B) {
 }
 
 func BenchmarkMLDSAVerify(b *testing.B) {
-	logTestStartEnd(b)
 	key, err := GenerateMLDSAKeyPair()
 	if err != nil {
 		b.Fatalf("failed to generate ML-DSA key pair: %v", err)

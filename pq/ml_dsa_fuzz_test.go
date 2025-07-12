@@ -3,10 +3,8 @@ package pq
 import "testing"
 
 func FuzzMLDSASignAndVerify(f *testing.F) {
-	logTestStartEnd(f)
 	key, _ := GenerateMLDSAKeyPair()
 	f.Fuzz(func(t *testing.T, msg []byte) {
-		logTestStartEnd(t)
 		signature, signErr := MLDSASign(key.PrivateKey, msg)
 		if signErr != nil {
 			t.Skip()
