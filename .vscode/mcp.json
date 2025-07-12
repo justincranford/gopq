@@ -53,8 +53,9 @@
     }
   },
   "toolGroups": {
-    "default": ["microsoft-docs", "time", "echo", "duckduckgo"],
+    "default": ["microsoft-docs"],
     "git-remove": ["github"],
-    "git-local": ["git-local"]
+    "git-local": ["git-local"],
+    "demo": ["time", "echo", "duckduckgo"]
   }
 }
