@@ -51,5 +51,10 @@
         "mcp/duckduckgo"
       ]
     }
+  },
+  "toolGroups": {
+    "default": ["microsoft-docs", "time", "echo", "duckduckgo"],
+    "git-remove": ["github"],
+    "git-local": ["git-local"]
   }
 }
