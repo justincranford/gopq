@@ -3,9 +3,10 @@
     "github": {
       "url": "https://api.githubcopilot.com/mcp/"
     },
-    // "atlassian": {
-    //   "url": "https://mcp.atlassian.com/v1/sse"
-    // },
+    "git-local": {
+      "command": "uvx",
+      "args": ["mcp-server-git"]
+    },
     "microsoft-docs": {
       "type": "http",
       "url": "https://learn.microsoft.com/api/mcp"
